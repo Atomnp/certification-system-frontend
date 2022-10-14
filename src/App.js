@@ -1,4 +1,4 @@
-
+import './App.css'
 
 import {Event} from './Components/Event'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
@@ -49,7 +49,12 @@ function App() {
     
       }
   return (
+  
     <div className="App">
+
+{/* <SideBar /> */}
+      
+   
   <Event addEvent={addEvent} events={events} onDelete={onDelete} onEdit={onEdit} onView={onView}/>
   
   </div>

@@ -1,14 +1,19 @@
+import "../App.css";
 import React from "react";
+import { MdSpaceDashboard, MdLabelImportantOutline } from "react-icons/md";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
-import Dropdown from "react-bootstrap/Dropdown";
 import { useState } from "react";
-import Table from "react-bootstrap/Table";
 
- 
-
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 export const Event = (props) => {
   const [title, setTitle] = useState("");
@@ -17,121 +22,187 @@ export const Event = (props) => {
   const [date2, setDate2] = useState("");
 
   const submit = () => {
-    if (!title || !desc || !date1 ||!date2) {
+    if (!title || !desc || !date1 || !date2) {
       alert("Blank detected");
     }
-    props.addEvent(title, desc,date1,date2);
+    props.addEvent(title, desc, date1, date2);
   };
-  
+
   return (
     <div>
-
-
-      <h4>Add Event</h4>
-      <Form>
-        <Row>
-          <Col>
-            <Form.Control
-              value={title}
-              onChange={(e) => {
-                setTitle(e.target.value);
-              }}
-              placeholder="Event Name"
-            />
-          </Col>
-          <Col>
-            <Form.Control
-              value={desc}
-              onChange={(e) => {
-                setDesc(e.target.value);
-              }}
-              placeholder="Description"
-            />
-          </Col>
-          <Col>
-            <Form.Control type='date'
-            value={date1}
-            onChange={(e) => {
-              setDate1(e.target.value);
-            }} placeholder="StartDate" />
-          </Col>
-          <Col>
-            <Form.Control type='date'
-             value={date2}
-             onChange={(e) => {
-               setDate2(e.target.value);
-             }}
-             placeholder="EndDate" />
-          </Col>
-          <Col>
-            <Button variant="primary" type="button" onClick={submit}>
-              ADD
-            </Button>{" "}
-          </Col>
-        </Row>
+      <div className="sidenav">
+        <a href="#">
+          <b> LOCUS</b>
+        </a>
         <br></br>
-        <Row>
-          <Col>
-            <Form.Control type="text" placeholder="Search" />
-          </Col>
-          <Col>
-            <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
-                Sort By
-              </Dropdown.Toggle>
 
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Start Date</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">A-Z</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">End Date</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Col>
-        </Row>
-      </Form>
-      <br></br>
+        <a href="#">
+          <MdSpaceDashboard /> Dashboard
+        </a>
+        <a href="#">
+          <MdLabelImportantOutline /> Logos
+        </a>
+      </div>
+      <div className="Form_area">
+        <h4>Add New Event</h4>
+        <br></br>
+        <Form>
+          <Row>
+            <Col>
+              <div id="labels">Event name</div>
+              <Form.Control
+                size="lg"
+                value={title}
+                onChange={(e) => {
+                  setTitle(e.target.value);
+                }}
+                placeholder="Event Name"
+              />
+            </Col>
+            <Col>
+              <div id="labels">Event Description</div>
+              <Form.Control
+                size="lg"
+                value={desc}
+                onChange={(e) => {
+                  setDesc(e.target.value);
+                }}
+                placeholder="Description"
+              />
+            </Col>
+            <Col>
+              <div id="labels">StartDate</div>
+              <Form.Control
+                size="lg"
+                type="date"
+                value={date1}
+                onChange={(e) => {
+                  setDate1(e.target.value);
+                }}
+                placeholder="StartDate"
+              />
+            </Col>
+            <Col>
+              <div id="labels">EndDate</div>
+              <Form.Control
+                type="date"
+                size="lg"
+                value={date2}
+                onChange={(e) => {
+                  setDate2(e.target.value);
+                }}
+                placeholder="EndDate"
+              />
+            </Col>
+          </Row>
 
-      <Table  striped bordered hover  >
-        <thead >
-          <tr>
-            <th>S.N</th>
-            <th>Event Name</th>
-            <th>Description</th>
-            <th>StartDate</th>
-            <th>EndDate</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-      </Table>
+          <Row>
+            <Col>
+              <div className="btn">
+                <Button variant="primary" type="button" onClick={submit}>
+                  ADD
+                </Button>{" "}
+              </div>
+            </Col>
+          </Row>
+          <br></br>
+          <Row>
+            <Col>
+              <Form.Control size="lg" type="text" placeholder="Search" />
+            </Col>
+            <Col></Col>
 
-     
-        {props.events.map((event) => {
-          return (
-            
-            <div>
-              
+            <Col>
+              <Form.Select size="lg">
+                <option>Sort By</option>
+                <option value="1">A-Z</option>
+                <option value="2">Start Date</option>
+                <option value="3">EndDate</option>
+              </Form.Select>
+            </Col>
+          </Row>
+        </Form>
+        <br></br>
 
-              <Table  striped bordered hover>
-                <tbody >
-                  <tr>
-                    <td>{event.sn}</td>
-                    <td>{event.title}</td>
-                    <td>{event.desc}</td>
-                    <td>{event.date1}</td>
-                    <td>{event.date2}</td>
-                   <td>
-                   <Button size='sm 'onClick={()=>{props.onEdit(event)}} type="danger">Edit</Button>
-                   {' '}<Button size='sm 'onClick={()=>{props.onView(event)}} type="danger">View</Button>
-                   {' '}  <Button size='sm 'onClick={()=>{props.onDelete(event)}} type="danger">Delete</Button></td> 
-                  </tr>
-                </tbody>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  <input type="checkbox" />
+                </TableCell>
+                {/* <TableCell>S.N</TableCell> */}
 
-              </Table>
-              
-            </div>
-          );
-        })}
-     
+                <TableCell align="left">
+                  <h5>Event Name</h5>
+                </TableCell>
+                <TableCell align="left">
+                  <h5>StartDate</h5>
+                </TableCell>
+                <TableCell align="left">
+                  <h5>EndDate</h5>
+                </TableCell>
+                <TableCell align="left">
+                  <h5>Action</h5>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {props.events.map((event) => (
+                <TableRow
+                  key={event.sn}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {/* {event.sn} */}
+                    <input type="checkbox" />
+                  </TableCell>
+
+                  <TableCell align="left">
+                    <h5>{event.title}</h5>
+                  </TableCell>
+                  <TableCell align="left">
+                    <h6>{event.date1}</h6>
+                  </TableCell>
+                  <TableCell align="left">
+                    <h6>{event.date2}</h6>
+                  </TableCell>
+
+                  <TableCell align="left">
+                    <a
+                      href="#"
+                      onClick={() => {
+                        props.onDelete(event);
+                      }}
+                    >
+                      {" "}
+                      Edit
+                    </a>{" "}
+                    <a
+                      href="#"
+                      onClick={() => {
+                        props.onDelete(event);
+                      }}
+                    >
+                      {" "}
+                      View
+                    </a>{" "}
+                    <a
+                      href="#"
+                      onClick={() => {
+                        props.onDelete(event);
+                      }}
+                    >
+                      {" "}
+                      Delete
+                    </a>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
     </div>
   );
 };

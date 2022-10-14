@@ -1,0 +1,56 @@
+html,
+body {
+  background-color: #e5e5e5;
+}
+
+.Form_area {
+  padding: 20px;
+  margin-left: 300px;
+
+  background-color: #e5e5e5;
+}
+#labels {
+  color: rgb(68, 3, 3);
+  padding: 8px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.sidebar {
+  display: flex;
+  align-items: left;
+  
+}
+.btn {
+  position: relative;
+  float: right;
+}
+.sidenav {
+  height: 100%;
+  width: 300px;
+  position: fixed;
+ 
+  background-color: rgb(255, 255, 255);  
+}
+
+.sidenav a {
+ 
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #302222;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+a {
+  display: inline;
+  font-size: 18px;
+}
+
+
+
+
