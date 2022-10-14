@@ -6,6 +6,10 @@ import React, {useState} from 'react';
 
 function App() {
 
+
+
+ 
+
   const onDelete=(event)=>{
     console.log("Lets go to hell",event)
     setevents(events.filter((e)=>{
@@ -15,7 +19,7 @@ function App() {
 
    }
    const onEdit=(event)=>{
-    console.log("aayena",event)   
+    
 
    }
 
@@ -56,7 +60,8 @@ function App() {
       
    
   <Event addEvent={addEvent} events={events} onDelete={onDelete} onEdit={onEdit} onView={onView}/>
-  
+ 
+ 
   </div>
   );
 }

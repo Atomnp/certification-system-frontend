@@ -6,7 +6,8 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
-
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -28,8 +29,18 @@ export const Event = (props) => {
     props.addEvent(title, desc, date1, date2);
   };
 
+  const onEdit=(event)=>{
+    
+
+   }
+
   return (
     <div>
+
+
+
+
+
       <div className="sidenav">
         <a href="#">
           <b> LOCUS</b>
@@ -169,7 +180,8 @@ export const Event = (props) => {
                   </TableCell>
 
                   <TableCell align="left">
-                    <a
+
+                  <a
                       href="#"
                       onClick={() => {
                         props.onDelete(event);
@@ -178,15 +190,20 @@ export const Event = (props) => {
                       {" "}
                       Edit
                     </a>{" "}
-                    <a
-                      href="#"
-                      onClick={() => {
-                        props.onDelete(event);
-                      }}
-                    >
+                 
+   
+    <Popup trigger={  <a  href="#"  >
                       {" "}
                       View
-                    </a>{" "}
+                    </a> } 
+     position="right center" closeOnDocumentClick>
+        
+      <div>{event.desc}</div>
+    
+    </Popup>
+ 
+                  
+                  
                     <a
                       href="#"
                       onClick={() => {
@@ -203,6 +220,11 @@ export const Event = (props) => {
           </Table>
         </TableContainer>
       </div>
+
+     
+
+
+
     </div>
   );
 };
