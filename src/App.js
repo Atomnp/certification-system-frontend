@@ -1,11 +1,13 @@
 import "./App.css";
 import { Event } from "./Components/Event";
+import { Sidebar } from "./Components/Sidebar";
+import { InputField } from "./Components/InputField";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 
 function App() {
   const onDelete = (event) => {
-       setevents(
+    setevents(
       events.filter((e) => {
         return e !== event;
       })
@@ -15,7 +17,6 @@ function App() {
 
   const [events, setevents] = useState([]);
   const addEvent = (title, desc, date1, date2) => {
-   
     if (events.length === 0) {
       var sn = 1;
     } else {
@@ -33,15 +34,9 @@ function App() {
   };
   return (
     <div className="App">
-      {/* <SideBar /> */}
-
-      <Event
-        addEvent={addEvent}
-        events={events}
-        onDelete={onDelete}
-        onEdit={onEdit}
-        
-      />
+      <Sidebar />
+      <InputField addEvent={addEvent} />
+      <Event events={events} onDelete={onDelete} onEdit={onEdit} />
     </div>
   );
 }
