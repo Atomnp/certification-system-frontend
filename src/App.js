@@ -1,6 +1,7 @@
 import "./App.css";
 import { Event } from "./Components/Event";
 import { Sidebar } from "./Components/Sidebar";
+import { SearchBar } from "./Components/SearchBar";
 import { InputField } from "./Components/InputField";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
@@ -36,6 +37,7 @@ function App() {
     <div className="App">
       <Sidebar />
       <InputField addEvent={addEvent} />
+      <SearchBar/>
       <Event events={events} onDelete={onDelete} onEdit={onEdit} />
     </div>
   );

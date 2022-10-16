@@ -3,9 +3,6 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
-import TableContainer from "@mui/material/TableContainer";
 export const EventItem = (props) => {
   return (
     <TableRow
@@ -13,7 +10,6 @@ export const EventItem = (props) => {
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
     >
       <TableCell component="th" scope="row">
-        {/* {props.event.sn} */}
         <input type="checkbox" />
       </TableCell>
       <TableCell align="left">
@@ -32,7 +28,6 @@ export const EventItem = (props) => {
             props.onDelete(props.event);
           }}
         >
-          {" "}
           Edit
         </a>{" "}
         <Popup

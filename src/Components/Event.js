@@ -11,7 +11,6 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 export const Event = (props) => {
-  console.log(props.event);
   return (
     <div>
       <div className="Form_area">

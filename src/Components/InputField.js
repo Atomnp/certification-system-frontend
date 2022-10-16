@@ -15,7 +15,6 @@ export const InputField = (props) => {
     if (!title || !desc || !date1 || !date2) {
       alert("Blank detected");
     } else {
-      console.log(title);
       props.addEvent(title, desc, date1, date2);
     }
   };
@@ -73,7 +72,6 @@ export const InputField = (props) => {
             />
           </Col>
         </Row>
-
         <Row>
           <Col>
             <div className="btn">
@@ -81,22 +79,6 @@ export const InputField = (props) => {
                 ADD
               </Button>{" "}
             </div>
-          </Col>
-        </Row>
-        <br></br>
-        <Row>
-          <Col>
-            <Form.Control size="lg" type="text" placeholder="Search" />
-          </Col>
-          <Col></Col>
-
-          <Col>
-            <Form.Select size="lg">
-              <option>Sort By</option>
-              <option value="1">A-Z</option>
-              <option value="2">Start Date</option>
-              <option value="3">EndDate</option>
-            </Form.Select>
           </Col>
         </Row>
       </Form>

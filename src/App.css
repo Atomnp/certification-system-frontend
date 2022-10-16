@@ -47,6 +47,7 @@ body {
 a {
   display: inline;
   font-size: 18px;
+  padding: 5px;
 }
 
 .modal {
