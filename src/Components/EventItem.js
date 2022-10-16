@@ -8,56 +8,50 @@ import Table from "@mui/material/Table";
 import TableContainer from "@mui/material/TableContainer";
 export const EventItem = (props) => {
   return (
-    <div>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableRow
-            key={props.event.sn}
-            sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-          >
-            <TableCell component="th" scope="row">
-              {/* {props.event.sn} */}
-              <input type="checkbox" />
-            </TableCell>
-            <TableCell align="left">
-              <h5>{props.event.title}</h5>
-            </TableCell>
-            <TableCell align="left">
-              <h6>{props.event.date1}</h6>
-            </TableCell>
-            <TableCell align="left">
-              <h6>{props.event.date2}</h6>
-            </TableCell>
-            <TableCell align="left">
-              <a
-                href="#"
-                onClick={() => {
-                  props.onDelete(props.event);
-                }}
-              >
-                {" "}
-                Edit
-              </a>{" "}
-              <Popup
-                trigger={<a href="#"> View</a>}
-                position="right center"
-                closeOnDocumentClick
-              >
-                <div>{props.event.desc}</div>
-              </Popup>
-              <a
-                href="#"
-                onClick={() => {
-                  props.onDelete(props.event);
-                }}
-              >
-                {" "}
-                Delete
-              </a>
-            </TableCell>
-          </TableRow>
-        </Table>
-      </TableContainer>
-    </div>
+    <TableRow
+      key={props.event.sn}
+      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+    >
+      <TableCell component="th" scope="row">
+        {/* {props.event.sn} */}
+        <input type="checkbox" />
+      </TableCell>
+      <TableCell align="left">
+        <h5>{props.event.title}</h5>
+      </TableCell>
+      <TableCell align="left">
+        <h6>{props.event.date1}</h6>
+      </TableCell>
+      <TableCell align="left">
+        <h6>{props.event.date2}</h6>
+      </TableCell>
+      <TableCell align="left">
+        <a
+          href="#"
+          onClick={() => {
+            props.onDelete(props.event);
+          }}
+        >
+          {" "}
+          Edit
+        </a>{" "}
+        <Popup
+          trigger={<a href="#"> View</a>}
+          position="right center"
+          closeOnDocumentClick
+        >
+          <div>{props.event.desc}</div>
+        </Popup>
+        <a
+          href="#"
+          onClick={() => {
+            props.onDelete(props.event);
+          }}
+        >
+          {" "}
+          Delete
+        </a>
+      </TableCell>
+    </TableRow>
   );
 };
