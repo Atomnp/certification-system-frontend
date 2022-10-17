@@ -7,14 +7,17 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import MyToast from "./Components/Toast";
 import { useState } from "react";
+import { Loader } from "./Components/Loader";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+  const [loaderMessage, setLoaderMessage] = useState(true);
   const [toastData, setToastData] = useState({});
-  
+
   let onToastClose = () => {
     setToastData({});
   };
-   return (
+  return (
     <>
       <Container className="full-height" fluid>
         <Row>
@@ -22,11 +25,14 @@ function App() {
             <Sidebar />
           </Col>
           <Col className="main-content">
-            <Event setToastData={setToastData}/>
+            <Event
+              setLoaderMessage={setLoaderMessage}
+              setLoading={setLoading}
+              setToastData={setToastData}
+            />
           </Col>
         </Row>
       </Container>
-      {console.log(toastData)}
       <MyToast
         show={toastData.message ? true : false}
         title={toastData.title}
@@ -34,7 +40,8 @@ function App() {
         message={toastData.message}
         onClose={onToastClose}
       />
-         </>
+      <Loader message={loaderMessage} show={loading} />
+    </>
   );
 }
 

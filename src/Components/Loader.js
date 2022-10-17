@@ -1,5 +1,6 @@
 import React from "react";
-import { View, ActivityIndicator } from "react-native";
+// import { View, ActivityIndicator } from "react-native";
+import Spinner from "react-bootstrap/Spinner";
 import Modal from "react-bootstrap/Modal";
 
 export const Loader = (props) => {
@@ -19,13 +20,12 @@ export const Loader = (props) => {
     >
       <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
-          Please Wait...
+          {props.message ? props.message : "Loading..."}
         </Modal.Title>
       </Modal.Header>
+      {/* TODO: center align spinner */}
       <Modal.Body>
-        <View style={styles.spinnerStyle}>
-          <ActivityIndicator size={"large"} />
-        </View>
+        <Spinner animation="border" />
       </Modal.Body>
     </Modal>
   );
