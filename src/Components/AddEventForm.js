@@ -20,9 +20,8 @@ export const InputField = (props) => {
   };
 
   return (
-    <div className="Form_area">
+    <>
       <h4>Add New Event</h4>
-      <br></br>
       <Form>
         <Row>
           <Col>
@@ -82,7 +81,6 @@ export const InputField = (props) => {
           </Col>
         </Row>
       </Form>
-      <br></br>
-    </div>
+    </>
   );
 };

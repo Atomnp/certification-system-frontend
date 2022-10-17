@@ -8,13 +8,12 @@ export const Sidebar = () => {
         <a href="#">
           <b> LOCUS</b>
         </a>
-        <br></br>
-
-        <a href="#">
-          <MdSpaceDashboard /> Dashboard
+        <a className="active" href="#">
+          <MdSpaceDashboard className="active" />{" "}
+          <span className="active">Dashboard</span>
         </a>
         <a href="#">
-          <MdLabelImportantOutline /> Logos
+          <MdLabelImportantOutline /> Logs
         </a>
       </div>
     </div>

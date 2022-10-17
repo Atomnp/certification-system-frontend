@@ -3,47 +3,46 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-export const EventItem = (props) => {
+export const EventItem = ({ onDelete, event, onEdit }) => {
   return (
     <TableRow
-      key={props.event.sn}
+      key={event.name}
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
     >
       <TableCell component="th" scope="row">
         <input type="checkbox" />
       </TableCell>
       <TableCell align="left">
-        <h5>{props.event.title}</h5>
+        <h5 className="clickable-blue">{event.name}</h5>
       </TableCell>
       <TableCell align="left">
-        <h6>{props.event.date1}</h6>
+        <h6>{event.start_date}</h6>
       </TableCell>
       <TableCell align="left">
-        <h6>{props.event.date2}</h6>
+        <h6>{event.end_date}</h6>
       </TableCell>
       <TableCell align="left">
         <a
           href="#"
           onClick={() => {
-            props.onDelete(props.event);
+            onEdit(event.name);
           }}
         >
           Edit
-        </a>{" "}
+        </a>
         <Popup
           trigger={<a href="#"> View</a>}
           position="right center"
           closeOnDocumentClick
         >
-          <div>{props.event.desc}</div>
+          <div>{event.desc}</div>
         </Popup>
         <a
           href="#"
           onClick={() => {
-            props.onDelete(props.event);
+            onDelete(event.name);
           }}
         >
-          {" "}
           Delete
         </a>
       </TableCell>

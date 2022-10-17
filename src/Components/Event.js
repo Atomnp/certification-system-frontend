@@ -1,54 +1,78 @@
-import "../App.css";
-import React from "react";
-import { EventItem } from "./EventItem";
-import "reactjs-popup/dist/index.css";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+import { EventTable } from "./EventTable";
+import { SearchBar } from "./Filters";
+import { InputField } from "./AddEventForm";
+import React, { useState, useEffect } from "react";
+import axios from "../lib/api";
 
-export const Event = (props) => {
+function Event() {
+  // event id is represented by event name, each events have unique id
+  const onDelete = async (event_name) => {
+    let res;
+    try {
+      res = await axios.delete(`/events/${event_name}`);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+    setEvents(
+      events.filter((e) => {
+        return e.name !== event_name;
+      })
+    );
+  };
+  const onEdit = async (edited_event) => {
+    let res;
+    try {
+      res = await axios.post(`/events/${edited_event.name}`, edited_event);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+    // events that are not edited
+    let rest_events = events.filter((e) => {
+      return e.name !== edited_event.name;
+    });
+    setEvents([rest_events, res.data]);
+  };
+
+  const addEvent = async (name, desc, date1, date2) => {
+    let res;
+    try {
+      res = await axios.post(
+        "/events/",
+        JSON.stringify({
+          name: name,
+          description: desc,
+          start_date: date1,
+          end_date: date2,
+          location: "Kathmandu",
+        })
+      );
+    } catch (err) {
+      console.log(err);
+    }
+    setEvents([...events, res.data]);
+  };
+
+  const [events, setEvents] = useState([]);
+
+  useEffect(async () => {
+    try {
+      let res = await axios.get("events/");
+      console.log(res.data);
+      setEvents(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
   return (
-    <div>
-      <div className="Form_area">
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>
-                  <input type="checkbox" />
-                </TableCell>
-                <TableCell>
-                  <h5>Event Name</h5>
-                </TableCell>
-                <TableCell align="left">
-                  <h5>StartDate</h5>
-                </TableCell>
-                <TableCell align="left">
-                  <h5>EndDate</h5>
-                </TableCell>
-                <TableCell align="left">
-                  <h5>Action</h5>
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {props.events.map((event) => {
-                return (
-                  <EventItem
-                    key={event.sn}
-                    event={event}
-                    onDelete={props.onDelete}
-                  />
-                );
-              })}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
-    </div>
+    <>
+      <InputField addEvent={addEvent} />
+      <SearchBar />
+      <EventTable events={events} onDelete={onDelete} onEdit={onEdit} />
+    </>
   );
-};
+}
+
+export default Event;

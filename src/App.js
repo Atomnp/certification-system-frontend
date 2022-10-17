@@ -1,8 +1,6 @@
 import "./App.css";
-import { Event } from "./Components/Event";
+import Event from "./Components/Event";
 import { Sidebar } from "./Components/Sidebar";
-import { SearchBar } from "./Components/SearchBar";
-import { InputField } from "./Components/InputField";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
@@ -10,51 +8,17 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 function App() {
-  const onDelete = (event) => {
-    setevents(
-      events.filter((e) => {
-        return e !== event;
-      })
-    );
-  };
-  const onEdit = (event) => {};
-
-  const [events, setevents] = useState([]);
-  const addEvent = (title, desc, date1, date2) => {
-    if (events.length === 0) {
-      var sn = 1;
-    } else {
-      sn = events[events.length - 1].sn + 1;
-    }
-    const myevent = {
-      sn: sn,
-      title: title,
-      desc: desc,
-      date1: date1,
-      date2: date2,
-    };
-    setevents([...events, myevent]);
-    console.log(myevent);
-  };
   return (
-    <div className="App">
-      <Container fluid>
-        <Row>
-          <Col xs={2}>
-            <Sidebar />
-          </Col>
-          <Col>
-            <Row>
-              <Col>
-                <InputField addEvent={addEvent} />
-                <SearchBar />
-                <Event events={events} onDelete={onDelete} onEdit={onEdit} />
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+    <Container className="full-height" fluid>
+      <Row>
+        <Col xs={2}>
+          <Sidebar />
+        </Col>
+        <Col className="main-content">
+          <Event />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
