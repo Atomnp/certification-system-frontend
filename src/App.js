@@ -8,12 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import MyToast from "./Components/Toast";
 import { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   const [toastData, setToastData] = useState({});
@@ -31,7 +26,7 @@ function App() {
             <Router>
               <Routes>
                 <Route
-                  path="/category"
+                  path="/categories"
                   element={
                     <>
                       <Category setToastData={setToastData} />
@@ -39,7 +34,7 @@ function App() {
                   }
                 />
                 <Route
-                  path="/event"
+                  path="/events"
                   element={
                     <>
                       <Event setToastData={setToastData} />

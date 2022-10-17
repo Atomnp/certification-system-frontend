@@ -8,14 +8,13 @@ import { useState } from "react";
 export const InputField = (props) => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [date1, setDate1] = useState("");
-  const [date2, setDate2] = useState("");
+ 
 
   const submit = () => {
-    if (!title || !desc || !date1 || !date2) {
+    if (!title || !desc ) {
       alert("Blank detected");
     } else {
-      props.addEvent(title, desc, date1, date2);
+      props.addCategory(title, desc);
     }
   };
 

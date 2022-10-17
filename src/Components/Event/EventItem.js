@@ -4,8 +4,14 @@ import "reactjs-popup/dist/index.css";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import MyModal from "../Modal";
+
+import { useNavigate} from 'react-router-dom';
 export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
   const [modalShow, setModalShow] = React.useState(false);
+  const navigate = useNavigate();
+  const navigateToCategories = () => {   
+    navigate('/categories')};
+
   return (
     <TableRow
       key={event.name}
@@ -15,7 +21,7 @@ export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
         <input type="checkbox" />
       </TableCell>
       <TableCell align="left">
-        <h5 className="clickable-blue">{event.name}</h5>
+        <h5 className="clickable-blue" onClick={navigateToCategories(event.name)} >{event.name}</h5>
       </TableCell>
       <TableCell align="left">
         <h6>{event.start_date}</h6>
@@ -32,6 +38,7 @@ export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
         >
           Edit
         </a>
+       
         <Popup
           trigger={<a href="#"> View</a>}
           position="right center"

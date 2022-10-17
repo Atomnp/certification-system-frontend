@@ -1,56 +1,55 @@
-import { EventTable } from "./CategoryTable";
+import { CategoryTable } from "./CategoryTable";
 import { Loader } from "../Loader";
 import { SearchBar } from "../Filters";
 import { InputField } from "./AddCategoryForm";
 import React, { useState, useEffect } from "react";
 import axios from "../../lib/api";
 
-function Event({ setToastData }) {
+function Category({ setToastData }) {
   const [Loading, setLoading] = React.useState(true);
-  // event id is represented by event name, each events have unique id
-  const onDelete = async (event_name) => {
+  // category id is represented by category name, each categories have unique id
+  const onDelete = async (category_name) => {
     let res;
     try {
-      res = await axios.delete(`/events/${event_name}`);
+      res = await axios.delete(`/categories/${category_name}`);
       console.log(res);
     } catch (err) {
       console.log(err);
     }
-    setEvents(
-      events.filter((e) => {
-        return e.name !== event_name;
+    setCategories(
+      categories.filter((e) => {
+        return e.name !== category_name;
       })
     );
   };
-  const onEdit = async (edited_event) => {
+  const onEdit = async (edited_category) => {
     let res;
     try {
-      res = await axios.post(`/events/${edited_event.name}`, edited_event);
+      res = await axios.post(`/categories/${edited_category.name}`, edited_category);
       console.log(res);
     } catch (err) {
       console.log(err);
     }
-    // events that are not edited
-    let rest_events = events.filter((e) => {
-      return e.name !== edited_event.name;
+    // categories that are not edited
+    let rest_events = categories.filter((e) => {
+      return e.name !== edited_category.name;
     });
-    setEvents([rest_events, res.data]);
+    setCategories([rest_events, res.data]);
   };
 
-  const addEvent = async (name, desc, date1, date2) => {
+  const addCategory = async (name, desc) => {
     let res;
     try {
       res = await axios.post(
-        "/events/",
+        "/categories/",
         JSON.stringify({
           name: name,
-          description: desc,
-          start_date: date1,
-          end_date: date2,
+          description: desc, 
+          event:'sf2022',         
           location: "Kathmandu",
         })
       );
-      setEvents([...events, res.data]);
+      setCategories([...categories, res.data]);
     } catch (err) {
       if (err.response.data) {
         setToastData({
@@ -62,7 +61,7 @@ function Event({ setToastData }) {
       }
     }
   };
-  const [events, setEvents] = useState([]);
+  const [categories, setCategories] = useState([]);
   //   async function timeout(delay: number) {
   //     return new Promise( res => setTimeout(res, delay) );
   // }
@@ -70,10 +69,10 @@ function Event({ setToastData }) {
     try {
       setLoading(true);
       // await timeout(10000);
-      let res = await axios.get("events/");
+      let res = await axios.get("categories/");
       setLoading(false);
       console.log(res.data);
-      setEvents(res.data);
+      setCategories(res.data);
     } catch (err) {
       console.log(err);
     }
@@ -81,15 +80,15 @@ function Event({ setToastData }) {
 
   return (
     <>
-      <InputField addEvent={addEvent} />
+      <InputField addCategory={addCategory} />
       <SearchBar />
       {Loading ? (
         <Loader show={Loading} />
       ) : (
-        <EventTable events={events} onDelete={onDelete} onEdit={onEdit} />
+        <CategoryTable events={categories} onDelete={onDelete} onEdit={onEdit} />
       )}
     </>
   );
 }
 
-export default Event;
+export default Category;
