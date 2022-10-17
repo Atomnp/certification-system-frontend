@@ -1,19 +1,19 @@
 html,
 body {
   background-color: #e5e5e5;
+  /* font style to poppins */
+  font-family: 'Poppins', sans-serif;
 }
 
 .Form_area {
   padding: 20px;
-  margin-left: 300px;
-
   background-color: #e5e5e5;
 }
 #labels {
   color: rgb(68, 3, 3);
   padding: 8px;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .sidebar {
@@ -42,6 +42,35 @@ body {
 
 .sidenav a:hover {
   color: #f1f1f1;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  min-height: 100vh !important;
+  z-index: 100;
+  padding: 48px 0 0;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+#sidebar-wrapper{
+  min-height: 100vh !important;
+  width: 100vw;
+  margin-left: -1rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#page-content-wrapper {
+  min-width: 0;
+  width: 100%;
 }
 
 a {

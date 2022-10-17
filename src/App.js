@@ -5,6 +5,9 @@ import { SearchBar } from "./Components/SearchBar";
 import { InputField } from "./Components/InputField";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
+import { Container } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function App() {
   const onDelete = (event) => {
@@ -35,10 +38,22 @@ function App() {
   };
   return (
     <div className="App">
-      <Sidebar />
-      <InputField addEvent={addEvent} />
-      <SearchBar/>
-      <Event events={events} onDelete={onDelete} onEdit={onEdit} />
+      <Container fluid>
+        <Row>
+          <Col xs={2}>
+            <Sidebar />
+          </Col>
+          <Col>
+            <Row>
+              <Col>
+                <InputField addEvent={addEvent} />
+                <SearchBar />
+                <Event events={events} onDelete={onDelete} onEdit={onEdit} />
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
