@@ -69,7 +69,7 @@ function Event({ setToastData }) {
   useEffect(async () => {
     try {
       setLoading(true);
-      // await timeout(1000);
+      // await timeout(10000);
       let res = await axios.get("events/");
       setLoading(false);
       console.log(res.data);

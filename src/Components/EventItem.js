@@ -39,7 +39,6 @@ export const EventItem = ({ onDelete, event, onEdit }) => {
         >
           <div>{event.desc}</div>
         </Popup>
-
         <a href="#" onClick={() => setModalShow(true)}>
           Delete
         </a>
