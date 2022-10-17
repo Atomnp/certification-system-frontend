@@ -49,11 +49,12 @@ export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
         <a href="#" onClick={() => setModalShow(true)}>
           Delete
         </a>
-        
+
         <MyModal
           show={modalShow}
-          onHide={() => setModalShow(false)}
-          Delete={() => {onDelete(event.name);
+          onCancel={() => setModalShow(false)}
+          onConfirm={() => {
+            onDelete(event.name);
           }}
         />
       </TableCell>
