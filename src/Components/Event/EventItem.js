@@ -3,8 +3,8 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import MyModal from "./Modal";
-export const EventItem = ({ onDelete, event, onEdit }) => {
+import MyModal from "../Modal";
+export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
   const [modalShow, setModalShow] = React.useState(false);
   return (
     <TableRow
@@ -42,11 +42,11 @@ export const EventItem = ({ onDelete, event, onEdit }) => {
         <a href="#" onClick={() => setModalShow(true)}>
           Delete
         </a>
+        
         <MyModal
           show={modalShow}
           onHide={() => setModalShow(false)}
-          Delete={() => {
-            onDelete(event.name);
+          Delete={() => {onDelete(event.name);
           }}
         />
       </TableCell>

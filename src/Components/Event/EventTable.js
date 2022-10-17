@@ -1,4 +1,4 @@
-import "../App.css";
+import "../../App.css";
 import React from "react";
 import { EventItem } from "./EventItem";
 import "reactjs-popup/dist/index.css";

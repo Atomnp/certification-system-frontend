@@ -1,9 +1,9 @@
-import { EventTable } from "./EventTable";
-import { Loader } from "./Loader";
-import { SearchBar } from "./Filters";
-import { InputField } from "./AddEventForm";
+import { EventTable } from "./CategoryTable";
+import { Loader } from "../Loader";
+import { SearchBar } from "../Filters";
+import { InputField } from "./AddCategoryForm";
 import React, { useState, useEffect } from "react";
-import axios from "../lib/api";
+import axios from "../../lib/api";
 
 function Event({ setToastData }) {
   const [Loading, setLoading] = React.useState(true);

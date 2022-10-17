@@ -15,6 +15,8 @@ export default function MyModal(props) {
           Do you really want to delete?
         </Modal.Title>
       </Modal.Header>
+      <Modal.Body>
+        </Modal.Body>
 
       <Modal.Footer>
         <Button onClick={props.Delete}>Yes</Button>

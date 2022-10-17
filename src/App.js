@@ -1,5 +1,5 @@
 import "./App.css";
-import Event from "./Components/Event";
+import Event from "./Components/Event/Event";
 import { Sidebar } from "./Components/Sidebar";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
@@ -10,10 +10,11 @@ import { useState } from "react";
 
 function App() {
   const [toastData, setToastData] = useState({});
+  
   let onToastClose = () => {
     setToastData({});
   };
-  return (
+   return (
     <>
       <Container className="full-height" fluid>
         <Row>
@@ -21,7 +22,7 @@ function App() {
             <Sidebar />
           </Col>
           <Col className="main-content">
-            <Event setToastData={setToastData} />
+            <Event setToastData={setToastData}/>
           </Col>
         </Row>
       </Container>
@@ -33,7 +34,7 @@ function App() {
         message={toastData.message}
         onClose={onToastClose}
       />
-    </>
+         </>
   );
 }
 
