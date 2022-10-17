@@ -3,9 +3,11 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
+import Button from "react-bootstrap/Button";
 export const EventItem = ({ onDelete, event, onEdit }) => {
   return (
     <TableRow
+    
       key={event.name}
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
     >
@@ -37,14 +39,21 @@ export const EventItem = ({ onDelete, event, onEdit }) => {
         >
           <div>{event.desc}</div>
         </Popup>
-        <a
-          href="#"
-          onClick={() => {
-            onDelete(event.name);
-          }}
+        <Popup
+          trigger={<a href="#"> Delete</a>}
+          position="right center"
+          closeOnDocumentClick
         >
-          Delete
-        </a>
+          Do you really want to delete?
+          <Button variant="danger"  size='sm' onClick={() => {
+            onDelete(event.name);
+          }}>
+                Yes
+              </Button>
+
+        </Popup>
+       
+        
       </TableCell>
     </TableRow>
   );

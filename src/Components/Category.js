@@ -1,5 +1,4 @@
 import { EventTable } from "./EventTable";
-import { Loader } from "./Loader";
 import { SearchBar } from "./Filters";
 import { InputField } from "./AddEventForm";
 import React, { useState, useEffect } from "react";
@@ -44,6 +43,7 @@ function Event() {
         JSON.stringify({
           name: name,
           description: desc,
+          
           start_date: date1,
           end_date: date2,
           location: "Kathmandu",
@@ -56,13 +56,11 @@ function Event() {
   };
 
   const [events, setEvents] = useState([]);
-  const [Loading, setLoading] = useState([]);
 
   useEffect(async () => {
     try {
-      setLoading(true);
       let res = await axios.get("events/");
-       console.log(res.data);
+      console.log(res.data);
       setEvents(res.data);
     } catch (err) {
       console.log(err);
@@ -71,15 +69,9 @@ function Event() {
 
   return (
     <>
-
       <InputField addEvent={addEvent} />
       <SearchBar />
-      <EventTable
-      
-        events={events}
-        onDelete={onDelete}
-        onEdit={onEdit}
-      />
+      <EventTable events={events} onDelete={onDelete} onEdit={onEdit} />
     </>
   );
 }
