@@ -1,5 +1,6 @@
 import "./App.css";
 import Event from "./Components/Event/Event";
+import Category from "./Components/Category/Category";
 import { Sidebar } from "./Components/Sidebar";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
@@ -7,14 +8,19 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import MyToast from "./Components/Toast";
 import { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Routes,
+} from "react-router-dom";
 
 function App() {
   const [toastData, setToastData] = useState({});
-  
   let onToastClose = () => {
     setToastData({});
   };
-   return (
+  return (
     <>
       <Container className="full-height" fluid>
         <Row>
@@ -22,7 +28,26 @@ function App() {
             <Sidebar />
           </Col>
           <Col className="main-content">
-            <Event setToastData={setToastData}/>
+            <Router>
+              <Routes>
+                <Route
+                  path="/category"
+                  element={
+                    <>
+                      <Category setToastData={setToastData} />
+                    </>
+                  }
+                />
+                <Route
+                  path="/event"
+                  element={
+                    <>
+                      <Event setToastData={setToastData} />
+                    </>
+                  }
+                />
+              </Routes>
+            </Router>
           </Col>
         </Row>
       </Container>
@@ -34,7 +59,7 @@ function App() {
         message={toastData.message}
         onClose={onToastClose}
       />
-         </>
+    </>
   );
 }
 

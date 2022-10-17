@@ -1,5 +1,4 @@
 import React from "react";
-import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
@@ -32,13 +31,7 @@ export const CategoryItem = ({ onDelete, event, onEdit }) => {
         >
           Edit
         </a>
-        <Popup
-          trigger={<a href="#"> View</a>}
-          position="right center"
-          closeOnDocumentClick
-        >
-          <div>{event.desc}</div>
-        </Popup>
+        
         <a href="#" onClick={() => setModalShow(true)}>
           Delete
         </a>

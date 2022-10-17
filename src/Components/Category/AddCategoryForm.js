@@ -21,7 +21,7 @@ export const InputField = (props) => {
 
   return (
     <>
-      <h4>Add  Category</h4>
+      <h4>Add Category</h4>
       <Form>
         <Row>
           <Col>
@@ -32,7 +32,7 @@ export const InputField = (props) => {
               onChange={(e) => {
                 setTitle(e.target.value);
               }}
-              placeholder="Event Name"
+              placeholder="Name"
             />
           </Col>
           <Col>
@@ -48,16 +48,7 @@ export const InputField = (props) => {
           </Col>
           
           <Col>
-            <div id="labels">EndDate</div>
-            <Form.Control
-              type="date"
-              size="lg"
-              value={date2}
-              onChange={(e) => {
-                setDate2(e.target.value);
-              }}
-              placeholder="EndDate"
-            />
+            
           </Col>
         </Row>
         <Row>

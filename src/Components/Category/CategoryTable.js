@@ -24,13 +24,13 @@ export const EventTable = ({ events, onDelete, onEdit }) => {
               <input type="checkbox" />
             </TableCell>
             <TableCell>
-              <h5>Event Name</h5>
+              <h5>Category Name</h5>
             </TableCell>
             <TableCell align="left">
-              <h5>StartDate</h5>
+              <h5>Created at</h5>
             </TableCell>
             <TableCell align="left">
-              <h5>EndDate</h5>
+              <h5>Certificates count</h5>
             </TableCell>
             <TableCell align="left">
               <h5>Action</h5>
