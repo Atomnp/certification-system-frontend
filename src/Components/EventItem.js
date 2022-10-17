@@ -3,11 +3,11 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import Button from "react-bootstrap/Button";
+import MyModal from "./Modal";
 export const EventItem = ({ onDelete, event, onEdit }) => {
+  const [modalShow, setModalShow] = React.useState(false);
   return (
     <TableRow
-    
       key={event.name}
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
     >
@@ -39,21 +39,17 @@ export const EventItem = ({ onDelete, event, onEdit }) => {
         >
           <div>{event.desc}</div>
         </Popup>
-        <Popup
-          trigger={<a href="#"> Delete</a>}
-          position="right center"
-          closeOnDocumentClick
-        >
-          Do you really want to delete?
-          <Button variant="danger"  size='sm' onClick={() => {
-            onDelete(event.name);
-          }}>
-                Yes
-              </Button>
 
-        </Popup>
-       
-        
+        <a href="#" onClick={() => setModalShow(true)}>
+          Delete
+        </a>
+        <MyModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          Delete={() => {
+            onDelete(event.name);
+          }}
+        />
       </TableCell>
     </TableRow>
   );

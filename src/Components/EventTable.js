@@ -14,7 +14,7 @@ export const EventTable = ({ events, onDelete, onEdit }) => {
   return (
     // <TableContainer style={{ height: "100%" }} component={Paper}>
     <TableContainer
-      style={{ height: "40rem", overflowY: "scroll" }}
+      style={{ height: "33rem", overflowY: "scroll" }}
       component={Paper}
     >
       <Table sx={{ minWidth: 650 }} aria-label="simple table">

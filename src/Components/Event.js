@@ -5,7 +5,8 @@ import { InputField } from "./AddEventForm";
 import React, { useState, useEffect } from "react";
 import axios from "../lib/api";
 
-function Event() {
+function Event({ setToastData }) {
+  const [Loading, setLoading] = React.useState(true);
   // event id is represented by event name, each events have unique id
   const onDelete = async (event_name) => {
     let res;
@@ -49,20 +50,29 @@ function Event() {
           location: "Kathmandu",
         })
       );
+      setEvents([...events, res.data]);
     } catch (err) {
-      console.log(err);
+      if (err.response.data) {
+        setToastData({
+          title: "Error",
+          message: err.response.data,
+          intent: "danger",
+        });
+        console.log(JSON.stringify(err));
+      }
     }
-    setEvents([...events, res.data]);
   };
-
   const [events, setEvents] = useState([]);
-  const [Loading, setLoading] = useState([]);
-
+  //   async function timeout(delay: number) {
+  //     return new Promise( res => setTimeout(res, delay) );
+  // }
   useEffect(async () => {
     try {
       setLoading(true);
+      // await timeout(1000);
       let res = await axios.get("events/");
-       console.log(res.data);
+      setLoading(false);
+      console.log(res.data);
       setEvents(res.data);
     } catch (err) {
       console.log(err);
@@ -71,15 +81,13 @@ function Event() {
 
   return (
     <>
-
       <InputField addEvent={addEvent} />
       <SearchBar />
-      <EventTable
-      
-        events={events}
-        onDelete={onDelete}
-        onEdit={onEdit}
-      />
+      {Loading ? (
+        <Loader show={Loading} />
+      ) : (
+        <EventTable events={events} onDelete={onDelete} onEdit={onEdit} />
+      )}
     </>
   );
 }
