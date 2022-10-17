@@ -10,7 +10,6 @@ function Event({ setToastData }) {
     let res;
     try {
       res = await axios.delete(`/events/${event_name}`);
-      console.log(res);
     } catch (err) {
       console.log(err);
     }
@@ -24,7 +23,6 @@ function Event({ setToastData }) {
     let res;
     try {
       res = await axios.post(`/events/${edited_event.name}`, edited_event);
-      console.log(res);
     } catch (err) {
       console.log(err);
     }
@@ -50,13 +48,13 @@ function Event({ setToastData }) {
       );
       setEvents([...events, res.data]);
     } catch (err) {
+      console.log(err);
       if (err.response.data) {
         setToastData({
           title: "Error",
           message: err.response.data,
           intent: "danger",
         });
-        console.log(JSON.stringify(err));
       }
     }
   };
@@ -66,7 +64,6 @@ function Event({ setToastData }) {
   useEffect(async () => {
     try {
       let res = await axios.get("events/");
-      console.log(res.data);
       setEvents(res.data);
     } catch (err) {
       console.log(err);
