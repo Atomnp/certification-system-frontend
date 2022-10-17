@@ -4,7 +4,7 @@ import { InputField } from "./AddEventForm";
 import React, { useState, useEffect } from "react";
 import axios from "../lib/api";
 
-function Event() {
+function Event({ setToastData }) {
   // event id is represented by event name, each events have unique id
   const onDelete = async (event_name) => {
     let res;
@@ -48,10 +48,17 @@ function Event() {
           location: "Kathmandu",
         })
       );
+      setEvents([...events, res.data]);
     } catch (err) {
-      console.log(err);
+      if (err.response.data) {
+        setToastData({
+          title: "Error",
+          message: err.response.data,
+          intent: "danger",
+        });
+        console.log(JSON.stringify(err));
+      }
     }
-    setEvents([...events, res.data]);
   };
 
   const [events, setEvents] = useState([]);
