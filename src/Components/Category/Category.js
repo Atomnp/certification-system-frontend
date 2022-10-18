@@ -4,8 +4,15 @@ import { SearchBar } from "../Filters";
 import { InputField } from "./AddCategoryForm";
 import React, { useState, useEffect } from "react";
 import axios from "../../lib/api";
+import { BrowserRouter as Router,useLocation, useSearchParams,Route, Routes,useParams,createSearchParams } from "react-router-dom";
 
 function Category({ setToastData }) {
+
+  const location = useLocation()
+  const params = new URLSearchParams(location.search)  
+  console.log(params.get("name"))
+
+
   const [Loading, setLoading] = React.useState(true);
   // category id is represented by category name, each categories have unique id
   const onDelete = async (category_name) => {
@@ -80,6 +87,8 @@ function Category({ setToastData }) {
 
   return (
     <>
+    
+    <div >{params.get("name")}</div>
       <InputField addCategory={addCategory} />
       <SearchBar />
       {Loading ? (

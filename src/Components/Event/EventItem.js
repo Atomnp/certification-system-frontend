@@ -4,13 +4,21 @@ import "reactjs-popup/dist/index.css";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import MyModal from "../Modal";
+import { BrowserRouter as createSearchParams } from "react-router-dom";
 
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
   const [modalShow, setModalShow] = React.useState(false);
   const navigate = useNavigate();
-  const navigateToCategories = () => {   
-    navigate('/categories')};
+  const params = { event_name: "sf2022" };
+  console.log(event.name);
+
+  const navigateToCategories = () => {
+    navigate({
+      pathname: "/categories",
+      search: `?${createSearchParams(params)}`,
+    });
+  };
 
   return (
     <TableRow
@@ -21,7 +29,9 @@ export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
         <input type="checkbox" />
       </TableCell>
       <TableCell align="left">
-        <h5 className="clickable-blue" onClick={navigateToCategories(event.name)} >{event.name}</h5>
+        <h5 className="clickable-blue" onClick={navigateToCategories}>
+          {event.name}
+        </h5>
       </TableCell>
       <TableCell align="left">
         <h6>{event.start_date}</h6>
@@ -38,7 +48,7 @@ export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
         >
           Edit
         </a>
-       
+
         <Popup
           trigger={<a href="#"> View</a>}
           position="right center"
@@ -49,11 +59,12 @@ export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
         <a href="#" onClick={() => setModalShow(true)}>
           Delete
         </a>
-        
+
         <MyModal
           show={modalShow}
           onHide={() => setModalShow(false)}
-          Delete={() => {onDelete(event.name);
+          Delete={() => {
+            onDelete(event.name);
           }}
         />
       </TableCell>

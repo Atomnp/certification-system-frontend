@@ -8,10 +8,9 @@ import { useState } from "react";
 export const InputField = (props) => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
- 
 
   const submit = () => {
-    if (!title || !desc ) {
+    if (!title || !desc) {
       alert("Blank detected");
     } else {
       props.addCategory(title, desc);
@@ -21,6 +20,7 @@ export const InputField = (props) => {
   return (
     <>
       <h4>Add Category</h4>
+
       <Form>
         <Row>
           <Col>
@@ -45,10 +45,8 @@ export const InputField = (props) => {
               placeholder="Description"
             />
           </Col>
-          
-          <Col>
-            
-          </Col>
+
+          <Col></Col>
         </Row>
         <Row>
           <Col>
