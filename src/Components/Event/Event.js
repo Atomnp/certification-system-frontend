@@ -70,9 +70,16 @@ function Event({ setLoaderMessage, setToastData, setLoading }) {
 
   return (
     <>
-      <InputField addEvent={addEvent} />
-      <SearchBar />
-      <EventTable events={events} onDelete={onDelete} onEdit={onEdit} />
+      <div style={{ height: "25%" }}>
+        <InputField addEvent={addEvent} />
+      </div>
+      <div style={{ height: "10%" }}>
+        {" "}
+        <SearchBar />
+      </div>
+      <div style={{ height: "64%", overflowY: "scroll" }}>
+        <EventTable events={events} onDelete={onDelete} onEdit={onEdit} />
+      </div>
     </>
   );
 }

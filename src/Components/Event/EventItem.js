@@ -10,17 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
   const [modalShow, setModalShow] = React.useState(false);
-  const navigate = useNavigate();
-  const params = { event_name: "sf2022" };
-  console.log(event.name);
 
-  const navigateToCategories = () => {
-    navigate({
-      pathname: "/categories",
-      search: `?${createSearchParams(params)}`,
-    });
-  };
-  // c51df0f
   return (
     <TableRow
       key={event.name}
