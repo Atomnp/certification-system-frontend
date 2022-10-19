@@ -1,5 +1,5 @@
-import { EventTable } from "./EventTable";
-import { SearchBar } from "./Filters";
+import { EventTable } from "../Components/EventTable";
+import { SearchBar } from "../Components/Filters";
 import { InputField } from "./AddEventForm";
 import React, { useState, useEffect } from "react";
 import axios from "../lib/api";

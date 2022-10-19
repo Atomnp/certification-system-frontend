@@ -1,6 +1,6 @@
 import "../App.css";
 import React from "react";
-import { EventItem } from "./EventItem";
+import { EventItem } from "../Event/EventItem";
 import "reactjs-popup/dist/index.css";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
