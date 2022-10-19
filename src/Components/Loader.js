@@ -1,16 +1,15 @@
 import React from "react";
-// import { View, ActivityIndicator } from "react-native";
-import Spinner from "react-bootstrap/Spinner";
+import { View, ActivityIndicator } from "react-native-web";
+
 import Modal from "react-bootstrap/Modal";
 
 export const Loader = (props) => {
   const styles = {
-    spinnerStyle: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-    },
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   };
+
   return (
     <Modal
       {...props}
@@ -23,10 +22,14 @@ export const Loader = (props) => {
           {props.message ? props.message : "Loading..."}
         </Modal.Title>
       </Modal.Header>
-      {/* TODO: center align spinner */}
+
       <Modal.Body>
-        <Spinner animation="border" />
+        <View style={styles.spinnerStyle}>
+          <ActivityIndicator size={"large"} />
+        </View>
       </Modal.Body>
+
+      {/* TODO: center align spinner */}
     </Modal>
   );
 };
