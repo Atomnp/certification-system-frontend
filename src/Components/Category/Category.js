@@ -1,19 +1,26 @@
 import { CategoryTable } from "./CategoryTable";
-import { Loader } from "../Loader";
 import { SearchBar } from "../Filters";
 import { InputField } from "./AddCategoryForm";
 import React, { useState, useEffect } from "react";
 import axios from "../../lib/api";
-import { BrowserRouter as Router,useLocation, useSearchParams,Route, Routes,useParams,createSearchParams } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  useLocation,
+  useSearchParams,
+  Route,
+  Routes,
+  useParams,
+  createSearchParams,
+} from "react-router-dom";
 
-function Category({ setToastData }) {
+function Category({ setToastData, setLoading }) {
+  let { event_id } = useParams();
 
-  const location = useLocation()
-  const params = new URLSearchParams(location.search)  
-  console.log(params.get("name"))
+  console.log("event_id", event_id);
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  console.log(params.get("name"));
 
-
-  const [Loading, setLoading] = React.useState(true);
   // category id is represented by category name, each categories have unique id
   const onDelete = async (category_name) => {
     let res;
@@ -32,16 +39,19 @@ function Category({ setToastData }) {
   const onEdit = async (edited_category) => {
     let res;
     try {
-      res = await axios.post(`/categories/${edited_category.name}`, edited_category);
+      res = await axios.post(
+        `/category/${edited_category.name}`,
+        edited_category
+      );
       console.log(res);
     } catch (err) {
       console.log(err);
     }
     // categories that are not edited
-    let rest_events = categories.filter((e) => {
+    let rest_categories = categories.filter((e) => {
       return e.name !== edited_category.name;
     });
-    setCategories([rest_events, res.data]);
+    setCategories([rest_categories, res.data]);
   };
 
   const addCategory = async (name, desc) => {
@@ -51,8 +61,8 @@ function Category({ setToastData }) {
         "/categories/",
         JSON.stringify({
           name: name,
-          description: desc, 
-          event:'sf2022',         
+          description: desc,
+          event: "sf2022",
           location: "Kathmandu",
         })
       );
@@ -72,30 +82,33 @@ function Category({ setToastData }) {
   //   async function timeout(delay: number) {
   //     return new Promise( res => setTimeout(res, delay) );
   // }
-  useEffect(async () => {
-    try {
-      setLoading(true);
-      // await timeout(10000);
-      let res = await axios.get("categories/");
-      setLoading(false);
-      console.log(res.data);
-      setCategories(res.data);
-    } catch (err) {
-      console.log(err);
+  useEffect(() => {
+    setLoading(true);
+    async function fetchData() {
+      try {
+        // await timeout(10000);
+        let res = await axios.get("categories?event_id=sf23");
+        setLoading(false);
+        console.log("set loaing false");
+        console.log(res.data);
+        setCategories(res.data);
+      } catch (err) {
+        console.log(err);
+      }
     }
-  }, []);
+    fetchData();
+  }, [location]);
 
   return (
     <>
-    
-    <div >{params.get("name")}</div>
       <InputField addCategory={addCategory} />
       <SearchBar />
-      {Loading ? (
-        <Loader show={Loading} />
-      ) : (
-        <CategoryTable events={categories} onDelete={onDelete} onEdit={onEdit} />
-      )}
+
+      <CategoryTable
+        categories={categories}
+        onDelete={onDelete}
+        onEdit={onEdit}
+      />
     </>
   );
 }

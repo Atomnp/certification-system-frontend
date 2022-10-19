@@ -10,7 +10,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-export const CategoryTable = ({ events, onDelete, onEdit }) => {
+export const CategoryTable = ({ categories, onDelete, onEdit }) => {
   return (
     // <TableContainer style={{ height: "100%" }} component={Paper}>
     <TableContainer
@@ -38,7 +38,7 @@ export const CategoryTable = ({ events, onDelete, onEdit }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {events.map((event) => {
+          {categories.map((event) => {
             return (
               <CategoryItem key={event.name} event={event} onDelete={onDelete} />
             );

@@ -6,7 +6,8 @@ import TableRow from "@mui/material/TableRow";
 import MyModal from "../Modal";
 import { BrowserRouter as createSearchParams } from "react-router-dom";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
   const [modalShow, setModalShow] = React.useState(false);
   const navigate = useNavigate();
@@ -29,9 +30,13 @@ export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
         <input type="checkbox" />
       </TableCell>
       <TableCell align="left">
-        <h5 className="clickable-blue" onClick={navigateToCategories}>
+        <Link
+          style={{ textDecoration: "none", fontWeight: "bold" }}
+          to={`/categories`}
+          className="clickable-blue"
+        >
           {event.name}
-        </h5>
+        </Link>
       </TableCell>
       <TableCell align="left">
         <h6>{event.start_date}</h6>
@@ -40,30 +45,42 @@ export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
         <h6>{event.end_date}</h6>
       </TableCell>
       <TableCell align="left">
-        <a
-          href="#"
-          onClick={() => {
-            onEdit(event.name);
-          }}
-        >
-          Edit
-        </a>
+        <div className="actions">
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={() => {
+              onEdit(event.name);
+            }}
+          >
+            Edit
+          </Button>
 
-        <Popup
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={() => {
+              onEdit(event.desc);
+            }}
+          >
+            view
+          </Button>
+
+          {/* <Popup
           trigger={<a href="#"> View</a>}
           position="right center"
           closeOnDocumentClick
         >
           <div>{event.desc}</div>
-        </Popup>
-        <a href="#" onClick={() => setModalShow(true)}>
-          Delete
-        </a>
+        </Popup> */}
+          <Button variant="danger" size="sm" onClick={() => setModalShow(true)}>
+            Delete
+          </Button>
+        </div>
 
         <MyModal
           show={modalShow}
-
-          onCancel={() => setModalShow(false)}
+          onHide={() => setModalShow(false)}
           onConfirm={() => {
             onDelete(event.name);
           }}

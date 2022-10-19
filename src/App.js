@@ -9,11 +9,12 @@ import Col from "react-bootstrap/Col";
 import MyToast from "./Components/Toast";
 import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Navigate } from "react-router";
 import { Loader } from "./Components/Loader";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [loaderMessage, setLoaderMessage] = useState(true);
+  const [loaderMessage, setLoaderMessage] = useState("");
   const [toastData, setToastData] = useState({});
 
   let onToastClose = () => {
@@ -30,10 +31,13 @@ function App() {
             <Router>
               <Routes>
                 <Route
-                  path="/categories"
+                  path="/categories/"
                   element={
                     <>
-                      <Category setToastData={setToastData} />
+                      <Category
+                        setLoading={setLoading}
+                        setToastData={setToastData}
+                      />
                     </>
                   }
                 />
@@ -46,6 +50,14 @@ function App() {
                         setLoading={setLoading}
                         setToastData={setToastData}
                       />
+                    </>
+                  }
+                />
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      <Navigate to="/events" />
                     </>
                   }
                 />
