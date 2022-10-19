@@ -19,8 +19,6 @@
     "react-burger-menu": "^3.0.8",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
-    "react-native": "^0.70.3",
-    "react-native-web": "^0.18.9",
     "react-pro-sidebar": "^1.0.0-alpha.5",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",

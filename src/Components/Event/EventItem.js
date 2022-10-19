@@ -62,8 +62,9 @@ export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
 
         <MyModal
           show={modalShow}
-          onHide={() => setModalShow(false)}
-          Delete={() => {
+
+          onCancel={() => setModalShow(false)}
+          onConfirm={() => {
             onDelete(event.name);
           }}
         />

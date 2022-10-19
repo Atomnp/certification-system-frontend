@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import React from "react";
 
 export default function MyModal(props) {
+  const { onConfirm, onCancel } = props;
   return (
     <Modal
       {...props}
@@ -12,15 +13,17 @@ export default function MyModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Do you really want to delete?
+          Your action can't be reversed?
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        </Modal.Body>
 
       <Modal.Footer>
-        <Button onClick={props.Delete}>Yes</Button>
-        <Button onClick={props.onHide}>NO</Button>
+        <Button variant="danger" onClick={onConfirm}>
+          Confirm
+        </Button>
+        <Button variant="primary" onClick={onCancel}>
+          Cancel
+        </Button>
       </Modal.Footer>
     </Modal>
   );

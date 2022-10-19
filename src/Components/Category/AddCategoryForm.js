@@ -46,7 +46,6 @@ export const InputField = (props) => {
             />
           </Col>
 
-          <Col></Col>
         </Row>
         <Row>
           <Col>
