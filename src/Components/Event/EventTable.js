@@ -37,7 +37,7 @@ export const EventTable = ({ events, onDelete, onEdit,addEvent }) => {
         <TableBody>
           {events.map((event) => {
             return (
-              <EventItem key={event.name} event={event} onDelete={onDelete} addEvent={addEvent} />
+              <EventItem key={event.name} event={event} onDelete={onDelete} onEdit={onEdit} />
             );
           })}
         </TableBody>

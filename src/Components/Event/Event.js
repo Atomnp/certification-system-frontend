@@ -1,5 +1,7 @@
 import { EventTable } from "./EventTable";
 
+
+
 import { SearchBar } from "../Filters";
 import { InputField } from "./AddEventForm";
 import React, { useState, useEffect } from "react";

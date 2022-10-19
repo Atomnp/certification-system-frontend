@@ -4,19 +4,19 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
 export default function RowEdit(props) {
-  const { onConfirm, onHide, event, addEvent } = props;
+  const {  onHide, event,onEdit } = props;
 
   const [title, setTitle] = useState(event.name);
   const [desc, setDesc] = useState(event.desc);
-  const [date1, setDate1] = useState(event.date1);
-  const [date2, setDate2] = useState(event.date2);
-  const onSubmit = () => {
-    if (!title || !desc || !date1 || !date2) {
-      alert("Blank detected");
-    } else {
-      addEvent(title, desc, date1, date2);
-    }
-  };
+  const [date1, setDate1] = useState();
+  const [date2, setDate2] = useState();
+//   const onSubmit = () => {
+//     if (!title || !desc || !date1 || !date2) {
+//       alert("Blank detected");
+//     } else {
+//       addEvent(title, desc, date1, date2);
+//     }
+//   };
 
   return (
     <>
@@ -86,10 +86,7 @@ export default function RowEdit(props) {
           </Button>
           <Button
             variant="primary"
-            onClick={(event) => {
-              onConfirm();
-              onSubmit();
-            }}
+            onClick={ onEdit({title:title,desc:desc,date1:date1,date2:date2})}
           >
             Save Changes
           </Button>

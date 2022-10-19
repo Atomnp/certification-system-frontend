@@ -8,10 +8,13 @@ import MyEdit from "./Edit";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
-export const EventItem = ({ onDelete, event, onEdit ,addEvent}, setModalData) => {
+export const EventItem = (
+  { onDelete, event, onEdit, addEvent },
+  setModalData
+) => {
   const [modalShow, setModalShow] = React.useState(false);
   const [show, setShow] = React.useState(false);
-  console.log('form item',event.name)
+  console.log("form item", event.name);
 
   return (
     <TableRow
@@ -38,12 +41,7 @@ export const EventItem = ({ onDelete, event, onEdit ,addEvent}, setModalData) =>
       </TableCell>
       <TableCell align="left">
         <div className="actions">
-          <Button
-            variant="primary"
-            size="sm"
-            onClick={() => setShow(true)}
-           
-          >
+          <Button variant="primary" size="sm" onClick={() => setShow(true)}>
             Edit
           </Button>
 
@@ -51,10 +49,7 @@ export const EventItem = ({ onDelete, event, onEdit ,addEvent}, setModalData) =>
             show={show}
             onHide={() => setShow(false)}
             event={event}
-            addEvent={addEvent}
-            onConfirm={() => {
-              onEdit(event.name);
-            }}
+            onEdit={onEdit}
           />
 
           <Button
