@@ -4,16 +4,14 @@ import "reactjs-popup/dist/index.css";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import MyModal from "../Modal";
-import MyEdit from './Edit';
+import MyEdit from "./Edit";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
-export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
+export const EventItem = ({ onDelete, event, onEdit ,addEvent}, setModalData) => {
   const [modalShow, setModalShow] = React.useState(false);
   const [show, setShow] = React.useState(false);
-
- 
- 
+  console.log('form item',event.name)
 
   return (
     <TableRow
@@ -44,21 +42,20 @@ export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
             variant="primary"
             size="sm"
             onClick={() => setShow(true)}
-            // onClick={() => {
-            //   onEdit(event.name);
-            // }}
+           
           >
             Edit
           </Button>
 
           <MyEdit
-        show={show}
-        onHide={() => setShow(false)}
-       
-          onConfirm={() => {
-            onDelete(event.name);
-          }}
-        />
+            show={show}
+            onHide={() => setShow(false)}
+            event={event}
+            addEvent={addEvent}
+            onConfirm={() => {
+              onEdit(event.name);
+            }}
+          />
 
           <Button
             variant="primary"

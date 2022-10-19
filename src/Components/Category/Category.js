@@ -3,20 +3,9 @@ import { SearchBar } from "../Filters";
 import { InputField } from "./AddCategoryForm";
 import React, { useState, useEffect } from "react";
 import axios from "../../lib/api";
-import {
-  BrowserRouter as Router,
-  useLocation,
-  useSearchParams,
-  Route,
-  Routes,
-  useParams,
-  createSearchParams,
-} from "react-router-dom";
+import { BrowserRouter as useLocation } from "react-router-dom";
 
 function Category({ setToastData, setLoading }) {
-  let { event_id } = useParams();
-
-  console.log("event_id", event_id);
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   console.log(params.get("name"));
@@ -47,6 +36,7 @@ function Category({ setToastData, setLoading }) {
     } catch (err) {
       console.log(err);
     }
+
     // categories that are not edited
     let rest_categories = categories.filter((e) => {
       return e.name !== edited_category.name;

@@ -30,6 +30,8 @@ function Event({ setLoaderMessage, setToastData, setLoading }) {
       let rest_events = events.filter((e) => {
         return e.name !== edited_event.name;
       });
+
+      
       setEvents([rest_events, res.data]);
     } catch (err) {
       handle_errors(err, setToastData, setLoading);
@@ -72,7 +74,7 @@ function Event({ setLoaderMessage, setToastData, setLoading }) {
     <>
       <InputField addEvent={addEvent} />
       <SearchBar />
-      <EventTable events={events} onDelete={onDelete} onEdit={onEdit} />
+      <EventTable events={events} onDelete={onDelete} onEdit={onEdit} addEvent={addEvent} />
     </>
   );
 }
