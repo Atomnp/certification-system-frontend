@@ -15,11 +15,7 @@ import {
 
 function Category({ setToastData, setLoading }) {
   let { event_id } = useParams();
-
   console.log("event_id", event_id);
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
-  console.log(params.get("name"));
 
   // category id is represented by category name, each categories have unique id
   const onDelete = async (category_name) => {
@@ -87,7 +83,7 @@ function Category({ setToastData, setLoading }) {
     async function fetchData() {
       try {
         // await timeout(10000);
-        let res = await axios.get("categories?event_id=sf23");
+        let res = await axios.get(`categories?event_id=${event_id}`);
         setLoading(false);
         console.log("set loaing false");
         console.log(res.data);
@@ -97,7 +93,7 @@ function Category({ setToastData, setLoading }) {
       }
     }
     fetchData();
-  }, [location]);
+  }, []);
 
   return (
     <>

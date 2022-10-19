@@ -31,7 +31,7 @@ function App() {
             <Router>
               <Routes>
                 <Route
-                  path="/categories/"
+                  path="/categories/:event_id"
                   element={
                     <>
                       <Category
