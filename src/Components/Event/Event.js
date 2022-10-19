@@ -55,17 +55,19 @@ function Event({ setLoaderMessage, setToastData, setLoading }) {
   };
   const [events, setEvents] = useState([]);
 
-  useEffect(async () => {
-    try {
-      setLoading(true);
-      let res = await axios.get("events/");
-      console.log(res.data);
-      setEvents(res.data);
-      setLoading(false);
-    } catch (err) {
-      handle_errors(err, setToastData);
-      console.log(err);
-    }
+  useEffect(() => {
+    (async () => {
+      try {
+        setLoading(true);
+        let res = await axios.get("events/");
+        console.log(res.data);
+        setEvents(res.data);
+        setLoading(false);
+      } catch (err) {
+        handle_errors(err, setToastData);
+        console.log(err);
+      }
+    })();
   }, []);
 
   return (

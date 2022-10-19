@@ -27,9 +27,6 @@ export const CategoryTable = ({ categories, onDelete, onEdit }) => {
               <h5>Category Name</h5>
             </TableCell>
             <TableCell align="left">
-              <h5>Created at</h5>
-            </TableCell>
-            <TableCell align="left">
               <h5>Certificates count</h5>
             </TableCell>
             <TableCell align="left">
@@ -38,9 +35,13 @@ export const CategoryTable = ({ categories, onDelete, onEdit }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {categories.map((event) => {
+          {categories.map((category) => {
             return (
-              <CategoryItem key={event.name} event={event} onDelete={onDelete} />
+              <CategoryItem
+                key={category.name}
+                category={category}
+                onDelete={onDelete}
+              />
             );
           })}
         </TableBody>

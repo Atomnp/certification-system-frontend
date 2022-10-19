@@ -6,7 +6,7 @@ import TableRow from "@mui/material/TableRow";
 import MyModal from "../Modal";
 import { BrowserRouter as createSearchParams } from "react-router-dom";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
   const [modalShow, setModalShow] = React.useState(false);
@@ -22,7 +22,7 @@ export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
       <TableCell align="left">
         <Link
           style={{ textDecoration: "none", fontWeight: "bold" }}
-          to={`/categories`}
+          to={`/categories/${event.name}/`}
           className="clickable-blue"
         >
           {event.name}
@@ -46,13 +46,7 @@ export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
             Edit
           </Button>
 
-          <Button
-            variant="primary"
-            size="sm"
-            onClick={() => {
-              onEdit(event.desc);
-            }}
-          >
+          <Button variant="primary" size="sm" onClick={() => {}}>
             view
           </Button>
 

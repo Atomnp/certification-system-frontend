@@ -3,15 +3,7 @@ import { SearchBar } from "../Filters";
 import { InputField } from "./AddCategoryForm";
 import React, { useState, useEffect } from "react";
 import axios from "../../lib/api";
-import {
-  BrowserRouter as Router,
-  useLocation,
-  useSearchParams,
-  Route,
-  Routes,
-  useParams,
-  createSearchParams,
-} from "react-router-dom";
+import { BrowserRouter as Router, useParams } from "react-router-dom";
 
 function Category({ setToastData, setLoading }) {
   let { event_id } = useParams();
@@ -83,10 +75,9 @@ function Category({ setToastData, setLoading }) {
     async function fetchData() {
       try {
         // await timeout(10000);
-        let res = await axios.get(`categories?event_id=${event_id}`);
+        let res = await axios.get(`categories?event_id=${"sf23"}`);
+        console.log("res.data", res.data);
         setLoading(false);
-        console.log("set loaing false");
-        console.log(res.data);
         setCategories(res.data);
       } catch (err) {
         console.log(err);
