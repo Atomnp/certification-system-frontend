@@ -19,7 +19,7 @@ export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
       search: `?${createSearchParams(params)}`,
     });
   };
-
+  // c51df0f
   return (
     <TableRow
       key={event.name}
