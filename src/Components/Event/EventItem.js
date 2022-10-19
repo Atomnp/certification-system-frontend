@@ -10,13 +10,13 @@ import { useNavigate } from "react-router-dom";
 export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
   const [modalShow, setModalShow] = React.useState(false);
   const navigate = useNavigate();
-  const page_params = { event_name: "sf2022" };
+  const params = { event_name: "sf2022" };
   console.log(event.name);
 
   const navigateToCategories = () => {
     navigate({
       pathname: "/categories",
-      search: `?${createSearchParams(page_params)}`,
+      search: `?${createSearchParams(params)}`,
     });
   };
   // c51df0f
