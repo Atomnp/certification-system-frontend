@@ -1,5 +1,5 @@
 import "./App.css";
-import Event from "./Event/Event";
+import Event from "./Components/Event/Event";
 import { Sidebar } from "./Components/Sidebar";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
