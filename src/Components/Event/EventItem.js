@@ -35,7 +35,7 @@ export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
         <h6>{event.end_date}</h6>
       </TableCell>
       <TableCell align="left">
-        <div className="actions">
+        <div className="center">
           <Button
             variant="primary"
             size="sm"

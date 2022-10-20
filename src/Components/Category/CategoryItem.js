@@ -23,7 +23,7 @@ export const CategoryItem = ({ onDelete, category, onEdit }) => {
       </TableCell>
 
       <TableCell>
-        <div className="actions">
+        <div className="center">
           <Button
             variant="primary"
             size="sm"

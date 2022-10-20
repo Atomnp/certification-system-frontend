@@ -1,5 +1,6 @@
 import React from "react";
-import { View, ActivityIndicator } from "react-native-web";
+// import { View, ActivityIndicator } from "react-native-web";
+import Spinner from "react-bootstrap/Spinner";
 
 import Modal from "react-bootstrap/Modal";
 
@@ -23,10 +24,11 @@ export const Loader = (props) => {
         </Modal.Title>
       </Modal.Header>
 
-      <Modal.Body>
-        <View style={styles.spinnerStyle}>
-          <ActivityIndicator size={"large"} />
-        </View>
+      <Modal.Body className="center">
+        {/* <div className="actions"> */}
+        {/* <div className="actions"> */}
+        <Spinner animation="border" role="status"></Spinner>
+        {/* </div> */}
       </Modal.Body>
 
       {/* TODO: center align spinner */}

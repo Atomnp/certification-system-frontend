@@ -7,14 +7,11 @@ import { BrowserRouter as Router, useParams } from "react-router-dom";
 
 function Category({ setToastData, setLoading }) {
   let { event_id } = useParams();
-  console.log("event_id", event_id);
-
   // category id is represented by category name, each categories have unique id
   const onDelete = async (category_name) => {
     let res;
     try {
       res = await axios.delete(`/categories/${category_name}`);
-      console.log(res);
     } catch (err) {
       console.log(err);
     }

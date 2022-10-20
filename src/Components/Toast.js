@@ -2,7 +2,6 @@ import Toast from "react-bootstrap/Toast";
 import ToastContainer from "react-bootstrap/ToastContainer";
 
 function MyToast({ onClose, show, title, intent, message }) {
-  console.log(title, intent, message);
   return (
     <ToastContainer className="p-3" position={"bottom-start"}>
       <Toast

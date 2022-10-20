@@ -1,12 +1,17 @@
 let handle_errors = (err, setToastData, setLoading) => {
-  if (err.response.data) {
+  if (err.response && err.response.data) {
     setToastData({
       title: "Error",
       message: err.response.data,
       intent: "danger",
     });
+  } else {
+    setToastData({
+      title: "Error",
+      message: err.code,
+      intent: "danger",
+    });
   }
-  console.log(err.response);
   setLoading(false);
 };
 

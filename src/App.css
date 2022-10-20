@@ -27,10 +27,7 @@ body {
   height: 100vh;
 }
 
-.clickable-blue{
-  color: #0B63F8;
-  cursor: pointer;
-}
+
 
 .active{
   color: #0B63F8;
@@ -93,7 +90,14 @@ a {
   border: 1px solid #cfcece;
 }
 
-.actions{
+.center{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+}
+
+.clickable-blue {
+  color: #0B63F8;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
 }

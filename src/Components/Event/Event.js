@@ -60,11 +60,11 @@ function Event({ setLoaderMessage, setToastData, setLoading }) {
       try {
         setLoading(true);
         let res = await axios.get("events/");
-        console.log(res.data);
         setEvents(res.data);
         setLoading(false);
       } catch (err) {
-        handle_errors(err, setToastData);
+        setLoading(false);
+        handle_errors(err, setToastData, setLoading);
         console.log(err);
       }
     })();

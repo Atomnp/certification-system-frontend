@@ -21,48 +21,46 @@ function App() {
     setToastData({});
   };
   return (
-    <>
+    <Router>
       <Container className="full-height" fluid>
         <Row>
           <Col xs={2}>
             <Sidebar />
           </Col>
           <Col className="main-content">
-            <Router>
-              <Routes>
-                <Route
-                  path="/categories/:event_id"
-                  element={
-                    <>
-                      <Category
-                        setLoading={setLoading}
-                        setToastData={setToastData}
-                      />
-                    </>
-                  }
-                />
-                <Route
-                  path="/events"
-                  element={
-                    <>
-                      <Event
-                        setLoaderMessage={setLoaderMessage}
-                        setLoading={setLoading}
-                        setToastData={setToastData}
-                      />
-                    </>
-                  }
-                />
-                <Route
-                  path="/"
-                  element={
-                    <>
-                      <Navigate to="/events" />
-                    </>
-                  }
-                />
-              </Routes>
-            </Router>
+            <Routes>
+              <Route
+                path="/categories/:event_id"
+                element={
+                  <>
+                    <Category
+                      setLoading={setLoading}
+                      setToastData={setToastData}
+                    />
+                  </>
+                }
+              />
+              <Route
+                path="/events"
+                element={
+                  <>
+                    <Event
+                      setLoaderMessage={setLoaderMessage}
+                      setLoading={setLoading}
+                      setToastData={setToastData}
+                    />
+                  </>
+                }
+              />
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Navigate to="/events" />
+                  </>
+                }
+              />
+            </Routes>
           </Col>
         </Row>
       </Container>
@@ -74,7 +72,7 @@ function App() {
         onClose={onToastClose}
       />
       <Loader message={loaderMessage} show={loading} />
-    </>
+    </Router>
   );
 }
 
