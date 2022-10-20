@@ -67,7 +67,11 @@ function Event({ setLoaderMessage, setToastData, setLoading }) {
         })
       );
       setEvents([...events, res.data]);
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+      handle_errors(err, setToastData, setLoading);
+
+    }
   };
   const [events, setEvents] = useState([]);
 

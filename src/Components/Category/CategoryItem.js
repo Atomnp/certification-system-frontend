@@ -5,7 +5,8 @@ import TableRow from "@mui/material/TableRow";
 import MyModal from "../Modal";
 import { Button } from "react-bootstrap";
 export const CategoryItem = ({ onDelete, category, onEdit }) => {
-  const [modalShow, setModalShow] = React.useState(false);
+  const [showDeleteModal, setShowDeleteModal] = React.useState(false);
+
   return (
     <TableRow
       key={category.name}
@@ -28,21 +29,21 @@ export const CategoryItem = ({ onDelete, category, onEdit }) => {
             variant="primary"
             size="sm"
             onClick={() => {
-              onEdit(category.name);
+              onEdit(category,category);
             }}
           >
             Edit
           </Button>
 
-          <Button variant="danger" size="sm" onClick={() => setModalShow(true)}>
+          <Button variant="danger" size="sm" onClick={() => setShowDeleteModal(true)}>
             Delete
           </Button>
         </div>
 
         <MyModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-          Delete={() => {
+          show={showDeleteModal}
+          onCancel={() => setShowDeleteModal(false)}
+          onConfirm={() => {
             onDelete(category.name);
           }}
         />

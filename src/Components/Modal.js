@@ -5,13 +5,13 @@ import React from "react";
 export default function MyModal(props) {
   const { onConfirm, onCancel } = props;
   return (
-    <Modal
+    <Modal 
       {...props}
       size="sm"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
+      <Modal.Header closeButton  >
         <Modal.Title id="contained-modal-title-vcenter">
           Your action can't be reversed?
         </Modal.Title>

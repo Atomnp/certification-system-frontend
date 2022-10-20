@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
 export default function RowEdit(props) {
-  const { onHide, event, onEdit, setShow } = props;
+  const { onHide, event, onEdit, setShowEditForm } = props;
 
   const [name, setTitle] = useState(event.name);
   const [desc, setDesc] = useState(event.description);
@@ -88,7 +88,7 @@ export default function RowEdit(props) {
                 location: "Kathmandu",
               };
               onEdit(edited_event, event);
-              setShow(false);
+              setShowEditForm(false);
             }}
           >
             Save Changes
