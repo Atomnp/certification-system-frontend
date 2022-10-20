@@ -13,7 +13,8 @@ export const InputField = (props) => {
     if (!title || !desc) {
       alert("Blank detected");
     } else {
-      props.addCategory(title, desc);
+      // props.addCategory(title, desc);
+      props.addCategory(title);
     }
   };
 
