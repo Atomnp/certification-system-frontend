@@ -8,8 +8,8 @@ import MyEdit from "./Edit";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 export const EventItem = ({ onDelete, event, onEdit }) => {
-  const [modalShow, setModalShow] = React.useState(false);
-  const [show, setShow] = React.useState(false);
+  const [showDeleteModal, setShowDeleteModal] = React.useState(false);
+  const [showEditForm, setShowEditForm] = React.useState(false);
 
   return (
     <TableRow
@@ -40,7 +40,7 @@ export const EventItem = ({ onDelete, event, onEdit }) => {
             variant="primary"
             size="sm"
             onClick={() => {
-              setShow(true);
+              setShowEditForm(true);
             }}
           >
             Edit
@@ -63,20 +63,20 @@ export const EventItem = ({ onDelete, event, onEdit }) => {
         >
           <div>{event.desc}</div>
         </Popup> */}
-          <Button variant="danger" size="sm" onClick={() => setModalShow(true)}>
+          <Button variant="danger" size="sm" onClick={() => setShowDeleteModal(true)}>
             Delete
           </Button>
         </div>
         <MyEdit
-          show={show}
-          onHide={() => setShow(false)}
+          show={showEditForm}
+          onHide={() => setShowEditForm(false)}
           event={event}
           onEdit={onEdit}
-          setShow={setShow}
+          setShow={setShowEditForm}
         />
         <MyModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
+          show={showDeleteModal}
+          onCancel={() => setShowDeleteModal(false)}
           onConfirm={() => {
             onDelete(event.name);
           }}

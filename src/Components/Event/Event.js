@@ -12,6 +12,7 @@ function Event({ setLoaderMessage, setToastData, setLoading }) {
     let res;
     try {
       res = await axios.delete(`/events/${event_name}`);
+      console.log(res)
       setEvents(
         events.filter((e) => {
           return e.name !== event_name;

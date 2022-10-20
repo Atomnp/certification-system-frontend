@@ -89,7 +89,7 @@ function Category({ setToastData, setLoading }) {
     <>
       <InputField addCategory={addCategory} />
       <SearchBar />
-      <div style={{ height: "64%", overflowY: "scroll" }}>
+<div style={{ height: "64%", overflowY: "scroll" }}>
       <CategoryTable
         categories={categories}
         onDelete={onDelete}
