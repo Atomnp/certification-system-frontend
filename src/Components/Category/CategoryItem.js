@@ -28,7 +28,7 @@ export const CategoryItem = ({ onDelete, category, onEdit }) => {
             variant="primary"
             size="sm"
             onClick={() => {
-              onEdit(category.name);
+              onEdit(category,category);
             }}
           >
             Edit
