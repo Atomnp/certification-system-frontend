@@ -49,7 +49,6 @@ function Category({ setToastData, setLoading }) {
           name: name,
           description: desc,
           event: event_id,
-          location: "Kathmandu",
         })
       );
       setCategories([...categories, res.data]);

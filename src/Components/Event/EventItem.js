@@ -20,11 +20,7 @@ export const EventItem = ({ onDelete, event, onEdit }) => {
         <input type="checkbox" />
       </TableCell>
       <TableCell align="left">
-        <Link
-          style={{ textDecoration: "none", fontWeight: "bold" }}
-          to={`/categories/${event.name}/`}
-          className="clickable-blue"
-        >
+        <Link to={`/categories/${event.id}/`} className="clickable-blue">
           {event.name}
         </Link>
       </TableCell>
