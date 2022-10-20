@@ -48,7 +48,7 @@ function Category({ setToastData, setLoading }) {
         JSON.stringify({
           name: name,
           description: desc,
-          event: "sf2022",
+          event: event_id,
           location: "Kathmandu",
         })
       );
@@ -73,7 +73,7 @@ function Category({ setToastData, setLoading }) {
     async function fetchData() {
       try {
         // await timeout(10000);
-        let res = await axios.get(`categories?event_id=${"sf23"}`);
+        let res = await axios.get(`categories?event_id=${event_id}`);
         console.log("res.data", res.data);
         setLoading(false);
         setCategories(res.data);
