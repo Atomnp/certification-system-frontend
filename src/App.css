@@ -101,3 +101,9 @@ a {
   font-weight: bold;
   text-decoration: none;
 }
+
+/* hover on clickable blue change the color slightly */
+
+.clickable-blue:hover{
+  color: rgb(66, 66, 217);
+}

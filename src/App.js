@@ -31,7 +31,7 @@ function App() {
           <Col className="main-content">
             <Routes>
               <Route
-                path="/certificates/:category_id"
+                path="/certificates/:event_id/:category_id"
                 element={
                   <>
                     <Certificate

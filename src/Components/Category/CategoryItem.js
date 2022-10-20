@@ -5,7 +5,7 @@ import TableRow from "@mui/material/TableRow";
 import MyModal from "../Modal";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-export const CategoryItem = ({ onDelete, category, onEdit }) => {
+export const CategoryItem = ({ event_id, onDelete, category, onEdit }) => {
   const [showDeleteModal, setShowDeleteModal] = React.useState(false);
 
   return (
@@ -17,7 +17,10 @@ export const CategoryItem = ({ onDelete, category, onEdit }) => {
         <input type="checkbox" />
       </TableCell>
       <TableCell align="left">
-        <Link to={`/certificates/${category.id}/`} className="clickable-blue">
+        <Link
+          to={`/certificates/${event_id}/${category.id}/`}
+          className="clickable-blue"
+        >
           {category.name}
         </Link>
       </TableCell>

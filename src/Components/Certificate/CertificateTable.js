@@ -10,6 +10,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
+
 export const CertificateTable = ({
   certificates,
   onDelete,
@@ -32,7 +33,7 @@ export const CertificateTable = ({
               <h5>Email</h5>
             </TableCell>
             <TableCell align="left">
-              <h5>Url</h5>
+              <h5>URL</h5>
             </TableCell>
             <TableCell align="left">
               <h5>Active</h5>

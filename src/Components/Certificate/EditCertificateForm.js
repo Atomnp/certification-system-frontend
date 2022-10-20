@@ -6,10 +6,9 @@ import Modal from "react-bootstrap/Modal";
 export default function RowEdit(props) {
   const { onHide, certificate, onEdit, setShowEditForm } = props;
 
-  const [name, setTitle] = useState(certificate.name);
-  const [desc, setDesc] = useState(certificate.description);
-  const [date1, setDate1] = useState(certificate.start_date);
-  const [date2, setDate2] = useState(certificate.end_date);
+  const [name, setName] = useState(certificate.name);
+  const [email, setEmail] = useState(certificate.email);
+  const [image, setImage] = useState(null);
 
   return (
     <>
@@ -20,57 +19,38 @@ export default function RowEdit(props) {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3">
-              <div id="labels">Certificate name</div>
+              <div id="labels">Name</div>
               <Form.Control
                 size="lg"
                 value={name}
                 onChange={(e) => {
-                  setTitle(e.target.value);
+                  setName(e.target.value);
                 }}
-                placeholder="Certificate Name"
               />
             </Form.Group>
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <div id="labels">Certificate Description</div>
+              <div id="labels">Email</div>
               <Form.Control
-                as="textarea"
                 rows={3}
                 size="lg"
-                value={desc}
+                value={email}
                 onChange={(e) => {
-                  setDesc(e.target.value);
+                  setEmail(e.target.value);
                 }}
-                placeholder="Description"
               />
             </Form.Group>
 
-            <Form.Group className="mb-3">
-              <div id="labels">StartDate</div>
-              <Form.Control
-                size="lg"
-                type="date"
-                value={date1}
-                onChange={(e) => {
-                  setDate1(e.target.value);
-                }}
-                placeholder="StartDate"
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <div id="labels">EndDate</div>
-              <Form.Control
-                size="lg"
-                type="date"
-                value={date2}
-                onChange={(e) => {
-                  setDate2(e.target.value);
-                }}
-                placeholder="EndDate"
-              />
-            </Form.Group>
+            <div id="labels">Image</div>
+            <Form.Control
+              size="lg"
+              type="file"
+              onChange={(e) => {
+                setImage(e.target.files[0]);
+              }}
+            />
           </Form>
         </Modal.Body>
         <Modal.Footer>
@@ -82,10 +62,9 @@ export default function RowEdit(props) {
             onClick={() => {
               let edited_certificate = {
                 name: name,
-                description: desc,
-                start_date: date1,
-                end_date: date2,
-                location: "Kathmandu",
+                email: email,
+                image: image,
+                active: certificate.active,
               };
               onEdit(edited_certificate, certificate);
               setShowEditForm(false);

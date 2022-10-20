@@ -105,6 +105,7 @@ function Category({ setToastData, setLoading }) {
       <SearchBar />
       <div style={{ height: "64%", overflowY: "scroll" }}>
         <CategoryTable
+          event_id={event_id}
           categories={categories}
           onDelete={onDelete}
           onEdit={onEdit}

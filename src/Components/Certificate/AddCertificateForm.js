@@ -30,10 +30,9 @@ export const InputField = (props) => {
             <Form.Control
               type="file"
               size="lg"
-              value={dataFile}
               onChange={(e) => {
-                console.log(e);
-                setDatFile(e.target.value);
+                console.log(e.target.files);
+                setDatFile(e.target.files[0]);
               }}
               placeholder="Certificate Name"
             />
@@ -43,9 +42,8 @@ export const InputField = (props) => {
             <Form.Control
               type="file"
               size="lg"
-              value={templateImage}
               onChange={(e) => {
-                setTemplateFile(e.target.value);
+                setTemplateFile(e.target.files[0]);
               }}
               placeholder="Description"
             />
@@ -55,9 +53,8 @@ export const InputField = (props) => {
             <Form.Control
               type="file"
               size="lg"
-              value={mappingFile}
               onChange={(e) => {
-                setMappingFile(e.target.value);
+                setMappingFile(e.target.files[0]);
               }}
               placeholder="StartDate"
             />
