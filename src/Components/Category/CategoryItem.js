@@ -20,7 +20,7 @@ export const CategoryItem = ({ onDelete, category, onEdit }) => {
       </TableCell>
 
       <TableCell component="th" scope="row">
-        <p>11</p>
+        <h5>{category.certificate_count}</h5>
       </TableCell>
 
       <TableCell>
@@ -29,22 +29,30 @@ export const CategoryItem = ({ onDelete, category, onEdit }) => {
             variant="primary"
             size="sm"
             onClick={() => {
-              onEdit(category,category);
+              onEdit(category, category);
             }}
           >
             Edit
           </Button>
 
-          <Button variant="danger" size="sm" onClick={() => setShowDeleteModal(true)}>
+          <Button
+            variant="danger"
+            size="sm"
+            onClick={() => setShowDeleteModal(true)}
+          >
             Delete
           </Button>
         </div>
 
         <MyModal
           show={showDeleteModal}
-          onCancel={() => setShowDeleteModal(false)}
+          onCancel={() => {
+            console.log("cancel");
+            setShowDeleteModal(false);
+          }}
           onConfirm={() => {
-            onDelete(category.name);
+            onDelete(category.id);
+            setShowDeleteModal(false);
           }}
         />
       </TableCell>

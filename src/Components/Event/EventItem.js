@@ -59,7 +59,11 @@ export const EventItem = ({ onDelete, event, onEdit }) => {
         >
           <div>{event.desc}</div>
         </Popup> */}
-          <Button variant="danger" size="sm" onClick={() => setShowDeleteModal(true)}>
+          <Button
+            variant="danger"
+            size="sm"
+            onClick={() => setShowDeleteModal(true)}
+          >
             Delete
           </Button>
         </div>
@@ -75,7 +79,7 @@ export const EventItem = ({ onDelete, event, onEdit }) => {
           onCancel={() => setShowDeleteModal(false)}
           onConfirm={() => {
             onDelete(event.id);
-            setModalShow(false);
+            setShowDeleteModal(false);
           }}
         />
       </TableCell>
