@@ -4,12 +4,12 @@ import "reactjs-popup/dist/index.css";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import MyModal from "../Modal";
-import { BrowserRouter as createSearchParams } from "react-router-dom";
-
+import MyEdit from "./Edit";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
-export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
+export const EventItem = ({ onDelete, event, onEdit }) => {
   const [modalShow, setModalShow] = React.useState(false);
+  const [show, setShow] = React.useState(false);
 
   return (
     <TableRow
@@ -46,7 +46,13 @@ export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
             Edit
           </Button>
 
-          <Button variant="primary" size="sm" onClick={() => {}}>
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={() => {
+              onEdit(event.desc);
+            }}
+          >
             view
           </Button>
 
@@ -61,7 +67,12 @@ export const EventItem = ({ onDelete, event, onEdit }, setModalData) => {
             Delete
           </Button>
         </div>
-
+        <MyEdit
+          show={show}
+          onHide={() => setShow(false)}
+          event={event}
+          onEdit={onEdit}
+        />
         <MyModal
           show={modalShow}
           onHide={() => setModalShow(false)}

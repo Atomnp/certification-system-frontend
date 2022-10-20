@@ -32,6 +32,7 @@ function Category({ setToastData, setLoading }) {
     } catch (err) {
       console.log(err);
     }
+
     // categories that are not edited
     let rest_categories = categories.filter((e) => {
       return e.name !== edited_category.name;
