@@ -74,7 +74,8 @@ export const EventItem = ({ onDelete, event, onEdit }) => {
           show={modalShow}
           onHide={() => setModalShow(false)}
           onConfirm={() => {
-            onDelete(event.name);
+            onDelete(event.id);
+            setModalShow(false);
           }}
         />
       </TableCell>

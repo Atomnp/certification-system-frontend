@@ -8,15 +8,22 @@ import handle_errors from "../../lib/utils";
 
 function Event({ setLoaderMessage, setToastData, setLoading }) {
   // event id is represented by event name, each events have unique id
-  const onDelete = async (event_name) => {
+  const onDelete = async (event_id) => {
     let res;
     try {
-      res = await axios.delete(`/events/${event_name}`);
+      setLoading(true);
+      res = await axios.delete(`/events/${event_id}`);
       setEvents(
         events.filter((e) => {
-          return e.name !== event_name;
+          return e.id !== event_id;
         })
       );
+      setLoading(false);
+      setToastData({
+        title: "Success",
+        message: "Event Deleted successfully",
+        intent: "success",
+      });
     } catch (err) {
       handle_errors(err, setToastData, setLoading);
       console.log(err);
@@ -27,7 +34,7 @@ function Event({ setLoaderMessage, setToastData, setLoading }) {
     console.log("edited_event", edited_event);
     try {
       res = await axios.put(
-        `/events/${edited_event.name}/`,
+        `/events/${old_event.id}/`,
         JSON.stringify(edited_event)
       );
       // events that are not edited
