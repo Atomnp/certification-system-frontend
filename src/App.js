@@ -1,6 +1,7 @@
 import "./App.css";
 import Event from "./Components/Event/Event";
 import Category from "./Components/Category/Category";
+import Certificate from "./Components/Certificate/Certificate";
 import { Sidebar } from "./Components/Sidebar";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
@@ -29,6 +30,17 @@ function App() {
           </Col>
           <Col className="main-content">
             <Routes>
+              <Route
+                path="/certificates/:category_id"
+                element={
+                  <>
+                    <Certificate
+                      setLoading={setLoading}
+                      setToastData={setToastData}
+                    />
+                  </>
+                }
+              />
               <Route
                 path="/categories/:event_id"
                 element={
