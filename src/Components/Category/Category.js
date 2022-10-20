@@ -30,35 +30,35 @@ function Category({ setToastData, setLoading }) {
       console.log(err);
     }
   };
-  
-const onEdit = async (edited_category, old_category) => {
-  let res;
-  console.log("edited_category", edited_category);
-  try {
-    res = await axios.put(
-      `/categories/${old_category.id}/`,
-      JSON.stringify({
-        name: edited_category.name,
-       // description:edited_category.desc,
-        event: event_id,
-      })
-    );
-    // categories that are not edited
-    let rest_categories = categories.filter((e) => {
-      return e.name !== old_category.name;
-    });
-    setCategories([...rest_categories, res.data]);
-    setToastData({
-      title: "Success",
-      message: "category edited successfully",
-      intent: "success",
-    });
-  } catch (err) {
-    handle_errors(err, setToastData, setLoading);
-    console.log(err);
-  }
-};
-// const addCategory = async (name,desc) => {
+
+  const onEdit = async (edited_category, old_category) => {
+    let res;
+    console.log("edited_category", edited_category);
+    try {
+      res = await axios.put(
+        `/categories/${old_category.id}/`,
+        JSON.stringify({
+          name: edited_category.name,
+          // description:edited_category.desc,
+          event: event_id,
+        })
+      );
+      // categories that are not edited
+      let rest_categories = categories.filter((e) => {
+        return e.name !== old_category.name;
+      });
+      setCategories([...rest_categories, res.data]);
+      setToastData({
+        title: "Success",
+        message: "category edited successfully",
+        intent: "success",
+      });
+    } catch (err) {
+      handle_errors(err, setToastData, setLoading);
+      console.log(err);
+    }
+  };
+  // const addCategory = async (name,desc) => {
   const addCategory = async (name) => {
     let res;
     try {
@@ -67,7 +67,7 @@ const onEdit = async (edited_category, old_category) => {
         "/categories/",
         JSON.stringify({
           name: name,
-         // description: desc,
+          // description: desc,
           event: event_id,
         })
       );
@@ -103,8 +103,13 @@ const onEdit = async (edited_category, old_category) => {
 
   return (
     <>
-      <InputField addCategory={addCategory} />
-      <SearchBar />
+      <div style={{ height: "25%" }}>
+        <InputField addCategory={addCategory} />
+      </div>
+      <div style={{ height: "10%" }}>
+        {" "}
+        <SearchBar />
+      </div>
       <div style={{ height: "64%", overflowY: "scroll" }}>
         <CategoryTable
           categories={categories}
