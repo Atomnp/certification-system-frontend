@@ -22,15 +22,24 @@ function Event({ setLoaderMessage, setToastData, setLoading }) {
       console.log(err);
     }
   };
-  const onEdit = async (edited_event) => {
+  const onEdit = async (edited_event, old_event) => {
     let res;
+    console.log("edited_event", edited_event);
     try {
-      res = await axios.post(`/events/${edited_event.name}`, edited_event);
+      res = await axios.put(
+        `/events/${edited_event.name}/`,
+        JSON.stringify(edited_event)
+      );
       // events that are not edited
       let rest_events = events.filter((e) => {
-        return e.name !== edited_event.name;
+        return e.name !== old_event.name;
       });
-      setEvents([rest_events, res.data]);
+      setEvents([...rest_events, res.data]);
+      setToastData({
+        title: "Success",
+        message: "Event edited successfully",
+        intent: "success",
+      });
     } catch (err) {
       handle_errors(err, setToastData, setLoading);
       console.log(err);

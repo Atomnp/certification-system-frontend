@@ -40,7 +40,7 @@ export const EventItem = ({ onDelete, event, onEdit }) => {
             variant="primary"
             size="sm"
             onClick={() => {
-              onEdit(event.name);
+              setShow(true);
             }}
           >
             Edit
@@ -72,6 +72,7 @@ export const EventItem = ({ onDelete, event, onEdit }) => {
           onHide={() => setShow(false)}
           event={event}
           onEdit={onEdit}
+          setShow={setShow}
         />
         <MyModal
           show={modalShow}

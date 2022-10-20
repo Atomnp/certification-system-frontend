@@ -4,19 +4,12 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
 export default function RowEdit(props) {
-  const {  onHide, event,onEdit } = props;
+  const { onHide, event, onEdit, setShow } = props;
 
-  const [title, setTitle] = useState(event.name);
-  const [desc, setDesc] = useState(event.desc);
-  const [date1, setDate1] = useState();
-  const [date2, setDate2] = useState();
-//   const onSubmit = () => {
-//     if (!title || !desc || !date1 || !date2) {
-//       alert("Blank detected");
-//     } else {
-//       addEvent(title, desc, date1, date2);
-//     }
-//   };
+  const [name, setTitle] = useState(event.name);
+  const [desc, setDesc] = useState(event.description);
+  const [date1, setDate1] = useState(event.start_date);
+  const [date2, setDate2] = useState(event.end_date);
 
   return (
     <>
@@ -30,7 +23,7 @@ export default function RowEdit(props) {
               <div id="labels">Event name</div>
               <Form.Control
                 size="lg"
-                value={title}
+                value={name}
                 onChange={(e) => {
                   setTitle(e.target.value);
                 }}
@@ -86,7 +79,17 @@ export default function RowEdit(props) {
           </Button>
           <Button
             variant="primary"
-            onClick={ onEdit({title:title,desc:desc,date1:date1,date2:date2})}
+            onClick={() => {
+              let edited_event = {
+                name: name,
+                description: desc,
+                start_date: date1,
+                end_date: date2,
+                location: "Kathmandu",
+              };
+              onEdit(edited_event, event);
+              setShow(false);
+            }}
           >
             Save Changes
           </Button>

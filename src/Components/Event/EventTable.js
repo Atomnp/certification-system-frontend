@@ -10,10 +10,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-export const EventTable = ({ events, onDelete, onEdit,addEvent }) => {
+export const EventTable = ({ events, onDelete, onEdit, addEvent }) => {
   return (
     // <TableContainer style={{ height: "100%" }} component={Paper}>
-    <TableContainer  component={Paper}>
+    <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -37,7 +37,12 @@ export const EventTable = ({ events, onDelete, onEdit,addEvent }) => {
         <TableBody>
           {events.map((event) => {
             return (
-              <EventItem key={event.name} event={event} onDelete={onDelete} onEdit={onEdit} />
+              <EventItem
+                key={event.name}
+                event={event}
+                onDelete={onDelete}
+                onEdit={onEdit}
+              />
             );
           })}
         </TableBody>
