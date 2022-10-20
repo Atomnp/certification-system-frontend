@@ -70,7 +70,6 @@ function Event({ setLoaderMessage, setToastData, setLoading }) {
     } catch (err) {
       console.log(err);
       handle_errors(err, setToastData, setLoading);
-
     }
   };
   const [events, setEvents] = useState([]);

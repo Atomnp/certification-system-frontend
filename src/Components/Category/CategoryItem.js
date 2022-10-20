@@ -3,11 +3,12 @@ import "reactjs-popup/dist/index.css";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import MyModal from "../Modal";
+import MyEdit from "./CategoryEdit";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 export const CategoryItem = ({ event_id, onDelete, category, onEdit }) => {
   const [showDeleteModal, setShowDeleteModal] = React.useState(false);
-
+  const [showEditForm, setShowEditForm] = React.useState(false);
   return (
     <TableRow
       key={category.name}
@@ -35,7 +36,7 @@ export const CategoryItem = ({ event_id, onDelete, category, onEdit }) => {
             variant="primary"
             size="sm"
             onClick={() => {
-              onEdit(category, category);
+              setShowEditForm(true);
             }}
           >
             Edit
@@ -49,6 +50,13 @@ export const CategoryItem = ({ event_id, onDelete, category, onEdit }) => {
             Delete
           </Button>
         </div>
+        <MyEdit
+          show={showEditForm}
+          onHide={() => setShowEditForm(false)}
+          category={category}
+          onEdit={onEdit}
+          setShow={setShowEditForm}
+        />
 
         <MyModal
           show={showDeleteModal}

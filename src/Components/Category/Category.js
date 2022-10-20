@@ -30,34 +30,36 @@ function Category({ setToastData, setLoading }) {
       console.log(err);
     }
   };
+
   const onEdit = async (edited_category, old_category) => {
     let res;
+    console.log("edited_category", edited_category);
     try {
-      setLoading(true);
-      res = await axios.post(
-        `/category/${edited_category.name}`,
-        JSON.stringify(edited_category)
+      res = await axios.put(
+        `/categories/${old_category.id}/`,
+        JSON.stringify({
+          name: edited_category.name,
+          // description:edited_category.desc,
+          event: event_id,
+        })
       );
+      // categories that are not edited
       let rest_categories = categories.filter((e) => {
-        return e.name !== edited_category.name;
+        return e.name !== old_category.name;
       });
-      setCategories([rest_categories, res.data]);
-      setLoading(false);
+      setCategories([...rest_categories, res.data]);
       setToastData({
         title: "Success",
-        message: "Category Edited successfully",
+        message: "category edited successfully",
         intent: "success",
       });
-      console.log(res);
     } catch (err) {
       handle_errors(err, setToastData, setLoading);
       console.log(err);
     }
-
-    // categories that are not edited
   };
-
-  const addCategory = async (name, desc) => {
+  // const addCategory = async (name,desc) => {
+  const addCategory = async (name) => {
     let res;
     try {
       setLoading(true);
@@ -65,7 +67,7 @@ function Category({ setToastData, setLoading }) {
         "/categories/",
         JSON.stringify({
           name: name,
-          description: desc,
+          // description: desc,
           event: event_id,
         })
       );
@@ -73,7 +75,7 @@ function Category({ setToastData, setLoading }) {
       setLoading(false);
       setToastData({
         title: "Success",
-        message: "Category Edited successfully",
+        message: "Category Created successfully",
         intent: "success",
       });
     } catch (err) {
@@ -101,8 +103,13 @@ function Category({ setToastData, setLoading }) {
 
   return (
     <>
-      <InputField addCategory={addCategory} />
-      <SearchBar />
+      <div style={{ height: "25%" }}>
+        <InputField addCategory={addCategory} />
+      </div>
+      <div style={{ height: "10%" }}>
+        {" "}
+        <SearchBar />
+      </div>
       <div style={{ height: "64%", overflowY: "scroll" }}>
         <CategoryTable
           event_id={event_id}

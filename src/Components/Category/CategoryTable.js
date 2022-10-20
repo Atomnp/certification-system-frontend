@@ -42,6 +42,7 @@ export const CategoryTable = ({ event_id, categories, onDelete, onEdit }) => {
                 key={category.name}
                 category={category}
                 onDelete={onDelete}
+                onEdit={onEdit}
               />
             );
           })}
