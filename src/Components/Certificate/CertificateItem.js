@@ -81,7 +81,7 @@ export const CertificateItem = ({ onDelete, certificate, onEdit }) => {
 
           <a
             style={{ margin: "0px", padding: "0px" }}
-            href={certificate.image}
+            href={`${certificate.image}`}
             target="_blank"
           >
             <Button

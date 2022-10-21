@@ -35,6 +35,7 @@ function App() {
                 element={
                   <>
                     <Certificate
+                      setLoaderMessage={setLoaderMessage}
                       setLoading={setLoading}
                       setToastData={setToastData}
                     />

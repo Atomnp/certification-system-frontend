@@ -9,6 +9,23 @@ import axios from "../../lib/api";
 
 function Certificate({ setLoaderMessage, setToastData, setLoading }) {
   let { category_id, event_id } = useParams();
+  const [certificates, setCertificates] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        setLoading(true);
+        let res = await axios.get(`certificates/?category=${category_id}`);
+        setCertificates(res.data);
+        setLoading(false);
+      } catch (err) {
+        setLoading(false);
+        handle_errors(err, setToastData, setLoading);
+        console.log(err);
+      }
+    })();
+  }, []);
+
   const onDelete = async (certificate_id) => {
     let res;
     try {
@@ -67,6 +84,8 @@ function Certificate({ setLoaderMessage, setToastData, setLoading }) {
   };
 
   const bulkGenerate = async (data_file, template_image, mapping_file) => {
+    setLoading(true);
+    setLoaderMessage("Generating certificates");
     let formData = new FormData();
     formData.append("csv_file", data_file);
     formData.append("template_image", template_image);
@@ -80,8 +99,8 @@ function Certificate({ setLoaderMessage, setToastData, setLoading }) {
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
-      let response = await axios.get(`certificates/?category=${category_id}`);
-      setCertificates([...certificates, response.data]);
+      setCertificates([...certificates, ...res.data]);
+      setLoading(false);
       setToastData({
         title: "Success",
         message: "Certificate generated successfully",
@@ -92,22 +111,6 @@ function Certificate({ setLoaderMessage, setToastData, setLoading }) {
       handle_errors(err, setToastData, setLoading);
     }
   };
-  const [certificates, setCertificates] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        setLoading(true);
-        let res = await axios.get(`certificates/?category=${category_id}`);
-        setCertificates(res.data);
-        setLoading(false);
-      } catch (err) {
-        setLoading(false);
-        handle_errors(err, setToastData, setLoading);
-        console.log(err);
-      }
-    })();
-  }, []);
 
   return (
     <>
