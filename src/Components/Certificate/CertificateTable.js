@@ -10,7 +10,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-
 export const CertificateTable = ({
   certificates,
   onDelete,
@@ -45,6 +44,10 @@ export const CertificateTable = ({
         </TableHead>
         <TableBody>
           {certificates.map((certificate) => {
+            let s = certificate.image.split("/");
+            certificate.certificate_url =
+              process.env.REACT_APP_LOCUS_SITE_URL +
+              s[s.length - 1].split(".")[0];
             return (
               <CertificateItem
                 key={certificate.id}

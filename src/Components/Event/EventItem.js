@@ -21,7 +21,7 @@ export const EventItem = ({ onDelete, event, onEdit }) => {
       </TableCell>
       <TableCell align="left">
         <Link to={`/categories/${event.id}/`} className="clickable-blue">
-          {event.name}
+          <h6>{event.name}</h6>
         </Link>
       </TableCell>
       <TableCell align="left">
