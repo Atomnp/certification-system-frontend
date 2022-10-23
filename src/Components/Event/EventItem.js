@@ -52,13 +52,6 @@ export const EventItem = ({ onDelete, event, onEdit }) => {
             view
           </Button>
 
-          {/* <Popup
-          trigger={<a href="#"> View</a>}
-          position="right center"
-          closeOnDocumentClick
-        >
-          <div>{event.desc}</div>
-        </Popup> */}
           <Button
             variant="danger"
             size="sm"
@@ -72,7 +65,7 @@ export const EventItem = ({ onDelete, event, onEdit }) => {
           onHide={() => setShowEditForm(false)}
           event={event}
           onEdit={onEdit}
-          setShow={setShowEditForm}
+          setShowEditForm={setShowEditForm}
         />
         <MyModal
           show={showDeleteModal}

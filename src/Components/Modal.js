@@ -2,8 +2,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import React from "react";
 
-export default function MyModal(props) {
-  const { onConfirm, onCancel } = props;
+export default function MyModal({ onConfirm, onCancel, ...props }) {
   return (
     <Modal
       {...props}

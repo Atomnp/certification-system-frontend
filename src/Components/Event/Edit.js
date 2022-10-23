@@ -3,9 +3,13 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
-export default function RowEdit(props) {
-  const { onHide, event, onEdit, setShowEditForm } = props;
-
+export default function RowEdit({
+  onHide,
+  event,
+  onEdit,
+  setShowEditForm,
+  ...rest
+}) {
   const [name, setTitle] = useState(event.name);
   const [desc, setDesc] = useState(event.description);
   const [date1, setDate1] = useState(event.start_date);
@@ -13,7 +17,7 @@ export default function RowEdit(props) {
 
   return (
     <>
-      <Modal {...props}>
+      <Modal onHide={onHide} {...rest}>
         <Modal.Header closeButton>
           <Modal.Title>Edit {event.name} </Modal.Title>
         </Modal.Header>

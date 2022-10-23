@@ -1,4 +1,4 @@
-let handle_errors = (err, setToastData, setLoading) => {
+let handle_errors = (err, set, setLoading, setToastData) => {
   if (err.response && err.response.data) {
     setToastData({
       title: "Error",

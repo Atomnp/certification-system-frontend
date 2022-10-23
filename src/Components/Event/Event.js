@@ -1,62 +1,24 @@
 import { EventTable } from "./EventTable";
-
 import { SearchBar } from "../Filters";
 import { InputField } from "./AddEventForm";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "../../lib/api";
-import handle_errors from "../../lib/utils";
+import { APIRequestContext } from "../../context";
 
-function Event({ setLoaderMessage, setToastData, setLoading }) {
-  // event id is represented by event name, each events have unique id
-  const onDelete = async (event_id) => {
-    let res;
-    try {
-      setLoading(true);
-      res = await axios.delete(`/events/${event_id}`);
-      setEvents(
-        events.filter((e) => {
-          return e.id !== event_id;
-        })
-      );
-      setLoading(false);
-      setToastData({
-        title: "Success",
-        message: "Event Deleted successfully",
-        intent: "success",
-      });
-    } catch (err) {
-      handle_errors(err, setToastData, setLoading);
-      console.log(err);
-    }
-  };
-  const onEdit = async (edited_event, old_event) => {
-    let res;
-    console.log("edited_event", edited_event);
-    try {
-      res = await axios.put(
-        `/events/${old_event.id}/`,
-        JSON.stringify(edited_event)
-      );
-      // events that are not edited
-      let rest_events = events.filter((e) => {
-        return e.name !== old_event.name;
-      });
-      setEvents([...rest_events, res.data]);
-      setToastData({
-        title: "Success",
-        message: "Event edited successfully",
-        intent: "success",
-      });
-    } catch (err) {
-      handle_errors(err, setToastData, setLoading);
-      console.log(err);
-    }
-  };
+function Event() {
+  const [events, setEvents] = useState([]);
+  const { request_handler } = useContext(APIRequestContext);
 
-  const addEvent = async (name, desc, date1, date2) => {
-    let res;
-    try {
-      res = await axios.post(
+  useEffect(() => {
+    request_handler(async () => {
+      let res = await axios.get("events/");
+      setEvents(res.data);
+    });
+  }, []);
+
+  const addEvent = (name, desc, date1, date2) => {
+    request_handler(async () => {
+      let res = await axios.post(
         "/events/",
         JSON.stringify({
           name: name,
@@ -67,27 +29,33 @@ function Event({ setLoaderMessage, setToastData, setLoading }) {
         })
       );
       setEvents([...events, res.data]);
-    } catch (err) {
-      console.log(err);
-      handle_errors(err, setToastData, setLoading);
-    }
+    }, "Event Added Successfully");
   };
-  const [events, setEvents] = useState([]);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        setLoading(true);
-        let res = await axios.get("events/");
-        setEvents(res.data);
-        setLoading(false);
-      } catch (err) {
-        setLoading(false);
-        handle_errors(err, setToastData, setLoading);
-        console.log(err);
-      }
-    })();
-  }, []);
+  const onDelete = (event_id) => {
+    request_handler(async () => {
+      let res = await axios.delete(`/events/${event_id}`);
+      setEvents(
+        events.filter((e) => {
+          return e.id !== event_id;
+        })
+      );
+    }, "Event deleted successfully");
+  };
+
+  const onEdit = (edited_event, old_event) => {
+    request_handler(async () => {
+      let res = await axios.put(
+        `/events/${old_event.id}/`,
+        JSON.stringify(edited_event)
+      );
+      // events that are not edited
+      let rest_events = events.filter((e) => {
+        return e.name !== old_event.name;
+      });
+      setEvents([...rest_events, res.data]);
+    }, "Event edited successfully");
+  };
 
   return (
     <>

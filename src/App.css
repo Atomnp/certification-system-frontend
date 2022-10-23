@@ -34,21 +34,22 @@ body {
 }
 
 .sidenav a {
-  padding: 6px 8px 6px 16px;
+  
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #302222;
   display: block;
 }
+.sidenav a:hover {
+  color:#3262b6;
+}
+
 
 .main-content{
   background-color: #e5e5e5;
   height: 100vh;
 }
 
-.sidenav a:hover {
-  color: #f1f1f1;
-}
 
 a {
   display: inline;
@@ -106,4 +107,44 @@ a {
 
 .clickable-blue:hover{
   color: rgb(66, 66, 217);
+}
+
+.App {
+  background-color: white;
+}
+
+.Auth-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.Auth-form {
+  width: 420px;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.Auth-form-content {
+  padding-left: 12%;
+  padding-right: 12%;
+}
+
+.Auth-form-title {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 24px;
+  color: rgb(34, 34, 34);
+  font-weight: 800;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
 }

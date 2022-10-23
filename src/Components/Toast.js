@@ -1,21 +1,30 @@
 import Toast from "react-bootstrap/Toast";
 import ToastContainer from "react-bootstrap/ToastContainer";
+import { APIRequestContext } from "../context";
+import { useContext } from "react";
 
-function MyToast({ onClose, show, title, intent, message }) {
+/* show={toastData.message ? true : false}
+          title={toastData.title}
+          intent={toastData.intent}
+          message={toastData.message}
+          onClose={onToastClose} */
+function MyToast() {
+  const { toastData, onToastClose } = useContext(APIRequestContext);
+
   return (
     <ToastContainer className="p-3" position={"bottom-start"}>
       <Toast
-        onClose={onClose}
-        show={show}
+        onClose={onToastClose}
+        show={toastData.message ? true : false}
         delay={5000}
-        bg={intent}
+        bg={toastData.intent}
         autohide
         animation
       >
         <Toast.Header>
-          <strong className="me-auto">{title}</strong>
+          <strong className="me-auto">{toastData.title}</strong>
         </Toast.Header>
-        <Toast.Body>{JSON.stringify(message)}</Toast.Body>
+        <Toast.Body>{JSON.stringify(toastData.message)}</Toast.Body>
       </Toast>
     </ToastContainer>
   );
