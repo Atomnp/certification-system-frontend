@@ -2,10 +2,10 @@ import React from "react";
 import { MdSpaceDashboard, MdLabelImportantOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-export const Sidebar = () => {
+export const Sidebar = (props) => {
   return (
     <div>
-      <div className="sidenav">
+      <div className={props.display? "sidenav": "side_nav_for_404 "} >
         <Link to="/" className="clickable-blue">
           LOCUS
         </Link>

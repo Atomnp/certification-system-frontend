@@ -12,33 +12,57 @@ import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Navigate } from "react-router";
 import { Loader } from "./Components/Loader";
-
+import { PageNotFound } from "./Components/PageNotFound";
 function App() {
   const [loading, setLoading] = useState(true);
   const [loaderMessage, setLoaderMessage] = useState("");
   const [toastData, setToastData] = useState({});
+  // const [display, setDisplay] = useState(true);
 
   let onToastClose = () => {
     setToastData({});
   };
+
   return (
-    <Router>
-      <Container className="full-height" fluid>
-        <Row>
-          <Col xs={2}>
-            <Sidebar />
-          </Col>
-          <Col className="main-content">
+    <>
+      <Router>
+        <Container className="full-height" fluid>
+          <div className="main-content">
             <Routes>
+              <Route
+                path="*"
+                element={
+                  <>
+                   <Row>
+                      <Col xs={2}>
+                        <Sidebar display={false} />
+                      </Col>
+                      <Col>
+                    <PageNotFound />
+                    {/* <Sidebar display={setDisplay(false)}/> */}
+                 
+                    </Col>
+                      </Row>
+                  </>
+                }
+              />
               <Route
                 path="/certificates/:event_id/:category_id"
                 element={
                   <>
-                    <Certificate
-                      setLoaderMessage={setLoaderMessage}
-                      setLoading={setLoading}
-                      setToastData={setToastData}
-                    />
+                    <Row>
+                      <Col xs={2}>
+                        <Sidebar display={true} />
+                      </Col>
+                      <Col>
+                        <Loader message={loaderMessage} show={loading} />
+                        <Certificate
+                          setLoaderMessage={setLoaderMessage}
+                          setLoading={setLoading}
+                          setToastData={setToastData}
+                        />
+                      </Col>
+                    </Row>
                   </>
                 }
               />
@@ -46,10 +70,18 @@ function App() {
                 path="/categories/:event_id"
                 element={
                   <>
-                    <Category
-                      setLoading={setLoading}
-                      setToastData={setToastData}
-                    />
+                    <Row>
+                      <Col xs={2}>
+                        <Sidebar display={true} />
+                      </Col>
+                      <Col>
+                        <Loader message={loaderMessage} show={loading} />
+                        <Category
+                          setLoading={setLoading}
+                          setToastData={setToastData}
+                        />
+                      </Col>
+                    </Row>
                   </>
                 }
               />
@@ -57,11 +89,18 @@ function App() {
                 path="/events"
                 element={
                   <>
-                    <Event
-                      setLoaderMessage={setLoaderMessage}
-                      setLoading={setLoading}
-                      setToastData={setToastData}
-                    />
+                    <Row>
+                      <Col xs={2}>
+                        <Sidebar display={true} />
+                      </Col>
+                      <Col>
+                        <Event
+                          setLoaderMessage={setLoaderMessage}
+                          setLoading={setLoading}
+                          setToastData={setToastData}
+                        />
+                      </Col>
+                    </Row>
                   </>
                 }
               />
@@ -69,23 +108,25 @@ function App() {
                 path="/"
                 element={
                   <>
+                    {" "}
+                    <Loader message={loaderMessage} show={loading} />
                     <Navigate to="/events" />
                   </>
                 }
               />
             </Routes>
-          </Col>
-        </Row>
-      </Container>
-      <MyToast
-        show={toastData.message ? true : false}
-        title={toastData.title}
-        intent={toastData.intent}
-        message={toastData.message}
-        onClose={onToastClose}
-      />
-      <Loader message={loaderMessage} show={loading} />
-    </Router>
+          </div>
+        </Container>
+
+        <MyToast
+          show={toastData.message ? true : false}
+          title={toastData.title}
+          intent={toastData.intent}
+          message={toastData.message}
+          onClose={onToastClose}
+        />
+      </Router>
+    </>
   );
 }
 

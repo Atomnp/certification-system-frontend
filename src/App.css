@@ -1,8 +1,7 @@
 html,
 body {
-  background-color: #e5e5e5;
   /* font style to poppins */
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   overflow-y: hidden;
 }
 
@@ -17,20 +16,24 @@ body {
   font-size: 1.2rem;
 }
 
-
 .btn {
   position: relative;
   float: right;
 }
 
-.full-height{
+.full-height {
   height: 100vh;
 }
 
+.side_nav_for_404 {
+  visibility: hidden;
+}
 
-
-.active{
-  color: #0B63F8;
+.bg_color_ {
+  background-color: #e5e5e5;
+}
+.active {
+  color: #0b63f8;
 }
 
 .sidenav a {
@@ -40,8 +43,11 @@ body {
   color: #302222;
   display: block;
 }
-
-.main-content{
+.sidenav {
+  background-color: white;
+  height: 100vh;
+}
+.main-content {
   background-color: #e5e5e5;
   height: 100vh;
 }
@@ -90,13 +96,13 @@ a {
   border: 1px solid #cfcece;
 }
 
-.center{
+.center {
   display: flex;
   justify-content: space-around;
 }
 
 .clickable-blue {
-  color: #0B63F8;
+  color: #0b63f8;
   cursor: pointer;
   font-weight: bold;
   text-decoration: none;
@@ -104,6 +110,6 @@ a {
 
 /* hover on clickable blue change the color slightly */
 
-.clickable-blue:hover{
+.clickable-blue:hover {
   color: rgb(66, 66, 217);
 }
