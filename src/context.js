@@ -40,11 +40,13 @@ export const APIRequestProvider = (props) => {
   ) => {
     setLoading(true);
     try {
-      await callback();
+      let res = await callback();
       //your code to be executed after 1 second
       setLoading(false);
       if (success_message) {
         showToastSuccess(success_message);
+      } else if (res.data.message) {
+        showToastSuccess(res.data.message);
       }
     } catch (err) {
       console.log("Error in request handler", err);

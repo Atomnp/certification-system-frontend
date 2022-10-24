@@ -15,6 +15,7 @@ export const CertificateTable = ({
   onDelete,
   onEdit,
   addCertificate,
+  onMailSend,
 }) => {
   return (
     // <TableContainer style={{ height: "100%" }} component={Paper}>
@@ -35,7 +36,7 @@ export const CertificateTable = ({
               <h5>URL</h5>
             </TableCell>
             <TableCell align="left">
-              <h5>Active</h5>
+              <h5>Emailed</h5>
             </TableCell>
             <TableCell align="left">
               <h5>Actions</h5>
@@ -54,6 +55,7 @@ export const CertificateTable = ({
                 certificate={certificate}
                 onDelete={onDelete}
                 onEdit={onEdit}
+                onMailSend={onMailSend}
               />
             );
           })}

@@ -73,19 +73,29 @@ function Certificate() {
     }, "Certificates generated successfully");
   };
 
+  const onMailSend = (certificate_id, send_all) => {
+    request_handler(async () => {
+      let res = await axios.post(`/send-email/`, {
+        send_all: send_all,
+        certificate: certificate_id,
+      });
+      return res;
+    });
+  };
   return (
     <>
-      <div style={{ height: "25%" }}>
+      <div className="add-item-form">
         <InputField bulkGenerate={bulkGenerate} />
       </div>
-      <div style={{ height: "10%" }}>
+      <div className="search-and-sort">
         <SearchBar />
       </div>
-      <div style={{ height: "64%", overflowY: "scroll" }}>
+      <div className="list-view">
         <CertificateTable
           certificates={certificates}
           onDelete={onDelete}
           onEdit={onEdit}
+          onMailSend={onMailSend}
         />
       </div>
     </>

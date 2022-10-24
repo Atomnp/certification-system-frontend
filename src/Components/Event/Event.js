@@ -57,16 +57,31 @@ function Event() {
     }, "Event edited successfully");
   };
 
+  const onMailSend = (event_id, send_all) => {
+    request_handler(async () => {
+      let res = await axios.post(`/send-email/`, {
+        send_all: send_all,
+        event: event_id,
+      });
+      return res;
+    });
+  };
+
   return (
     <>
-      <div style={{ height: "25%" }}>
+      <div className="add-item-form">
         <InputField addEvent={addEvent} />
       </div>
-      <div style={{ height: "10%" }}>
+      <div className="search-and-sort">
         <SearchBar />
       </div>
-      <div style={{ height: "64%", overflowY: "scroll" }}>
-        <EventTable events={events} onDelete={onDelete} onEdit={onEdit} />
+      <div className="list-view">
+        <EventTable
+          events={events}
+          onDelete={onDelete}
+          onEdit={onEdit}
+          onMailSend={onMailSend}
+        />
       </div>
     </>
   );

@@ -4,12 +4,14 @@ import "reactjs-popup/dist/index.css";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import MyModal from "../Modal";
+import MailSendPopup from "../MailSendPopup";
 import MyEdit from "./Edit";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
-export const EventItem = ({ onDelete, event, onEdit }) => {
+export const EventItem = ({ onDelete, event, onEdit, onMailSend }) => {
   const [showDeleteModal, setShowDeleteModal] = React.useState(false);
   const [showEditForm, setShowEditForm] = React.useState(false);
+  const [showMailSend, setShowMailSend] = React.useState(false);
 
   return (
     <TableRow
@@ -46,10 +48,10 @@ export const EventItem = ({ onDelete, event, onEdit }) => {
             variant="primary"
             size="sm"
             onClick={() => {
-              onEdit(event.desc);
+              setShowMailSend(true);
             }}
           >
-            view
+            Mail
           </Button>
 
           <Button
@@ -60,6 +62,7 @@ export const EventItem = ({ onDelete, event, onEdit }) => {
             Delete
           </Button>
         </div>
+
         <MyEdit
           show={showEditForm}
           onHide={() => setShowEditForm(false)}
@@ -73,6 +76,20 @@ export const EventItem = ({ onDelete, event, onEdit }) => {
           onConfirm={() => {
             onDelete(event.id);
             setShowDeleteModal(false);
+          }}
+        />
+        <MailSendPopup
+          show={showMailSend}
+          onCancel={() => {
+            setShowMailSend(false);
+          }}
+          onSendAll={() => {
+            onMailSend(event.id, true);
+            setShowMailSend(false);
+          }}
+          onSendFiltered={() => {
+            onMailSend(event.id, false);
+            setShowMailSend(false);
           }}
         />
       </TableCell>

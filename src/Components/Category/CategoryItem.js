@@ -6,9 +6,17 @@ import MyModal from "../Modal";
 import MyEdit from "./CategoryEdit";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-export const CategoryItem = ({ event_id, onDelete, category, onEdit }) => {
+import MailSendPopup from "../MailSendPopup";
+export const CategoryItem = ({
+  event_id,
+  onDelete,
+  category,
+  onEdit,
+  onMailSend,
+}) => {
   const [showDeleteModal, setShowDeleteModal] = React.useState(false);
   const [showEditForm, setShowEditForm] = React.useState(false);
+  const [showMailSend, setShowMailSend] = React.useState(false);
   return (
     <TableRow
       key={category.name}
@@ -41,6 +49,15 @@ export const CategoryItem = ({ event_id, onDelete, category, onEdit }) => {
           >
             Edit
           </Button>
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={() => {
+              setShowMailSend(true);
+            }}
+          >
+            Mail
+          </Button>
 
           <Button
             variant="danger"
@@ -66,6 +83,20 @@ export const CategoryItem = ({ event_id, onDelete, category, onEdit }) => {
           onConfirm={() => {
             onDelete(category.id);
             setShowDeleteModal(false);
+          }}
+        />
+        <MailSendPopup
+          show={showMailSend}
+          onCancel={() => {
+            setShowMailSend(false);
+          }}
+          onSendAll={() => {
+            onMailSend(category.id, true);
+            setShowMailSend(false);
+          }}
+          onSendFiltered={() => {
+            onMailSend(category.id, false);
+            setShowMailSend(false);
           }}
         />
       </TableCell>

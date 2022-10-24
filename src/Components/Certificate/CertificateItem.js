@@ -8,15 +8,22 @@ import MyEdit from "./EditCertificateForm";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import MailSendPopup from "../MailSendPopup";
 import {
   faCopy,
-  faToggleOn,
-  faToggleOff,
+  faCheckCircle,
+  faCross,
 } from "@fortawesome/free-solid-svg-icons";
 
-export const CertificateItem = ({ onDelete, certificate, onEdit }) => {
+export const CertificateItem = ({
+  onDelete,
+  certificate,
+  onEdit,
+  onMailSend,
+}) => {
   const [showDeleteModal, setShowDeleteModal] = React.useState(false);
   const [showEditForm, setShowEditForm] = React.useState(false);
+  // const [showMailSend, setShowMailSend] = React.useState(false);
 
   return (
     <TableRow
@@ -44,31 +51,24 @@ export const CertificateItem = ({ onDelete, certificate, onEdit }) => {
         </h6>
       </TableCell>
       <TableCell align="left">
-        {certificate.active ? (
-          <FontAwesomeIcon
-            onClick={() => {
-              let new_cert = { ...certificate };
-              new_cert.active = false;
-              new_cert.image = null;
-              onEdit(new_cert, certificate);
-            }}
-            icon={faToggleOn}
-          />
+        {certificate.email_sent ? (
+          <FontAwesomeIcon color="green" icon={faCheckCircle} />
         ) : (
-          <FontAwesomeIcon
-            onClick={() => {
-              let new_cert = { ...certificate };
-              new_cert.active = true;
-              new_cert.image = null;
-              onEdit(new_cert, certificate);
-            }}
-            icon={faToggleOff}
-          />
+          <FontAwesomeIcon color="red" icon={faCross} />
         )}
-        {/* <h6>{certificate.active}</h6> */}
+        {/* <h6>{certificate.email_sent}</h6> */}
       </TableCell>
       <TableCell align="left">
         <div className="center">
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={() => {
+              onMailSend(certificate.id, true);
+            }}
+          >
+            Mail
+          </Button>
           <Button
             variant="primary"
             size="sm"
@@ -125,6 +125,20 @@ export const CertificateItem = ({ onDelete, certificate, onEdit }) => {
             setShowDeleteModal(false);
           }}
         />
+        {/* <MailSendPopup
+          show={showMailSend}
+          onCancel={() => {
+            setShowMailSend(false);
+          }}
+          onSendAll={() => {
+            onMailSend(certificate.id, true);
+            setShowMailSend(false);
+          }}
+          onSendFiltered={() => {
+            onMailSend(certificate.id, false);
+            setShowMailSend(false);
+          }}
+        /> */}
       </TableCell>
     </TableRow>
   );
