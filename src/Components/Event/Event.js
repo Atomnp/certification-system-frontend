@@ -63,7 +63,6 @@ function Event() {
         <InputField addEvent={addEvent} />
       </div>
       <div style={{ height: "10%" }}>
-        {" "}
         <SearchBar />
       </div>
       <div style={{ height: "64%", overflowY: "scroll" }}>

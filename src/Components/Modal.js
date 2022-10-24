@@ -6,6 +6,7 @@ export default function MyModal({ onConfirm, onCancel, ...props }) {
   return (
     <Modal
       {...props}
+      onHide={onCancel}
       size="sm"
       aria-labelledby="contained-modal-title-vcenter"
       centered

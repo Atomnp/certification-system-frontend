@@ -31,7 +31,6 @@ export const InputField = (props) => {
               type="file"
               size="lg"
               onChange={(e) => {
-                console.log(e.target.files);
                 setDatFile(e.target.files[0]);
               }}
               placeholder="Certificate Name"

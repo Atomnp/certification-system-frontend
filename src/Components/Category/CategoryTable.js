@@ -12,11 +12,7 @@ import Paper from "@mui/material/Paper";
 
 export const CategoryTable = ({ event_id, categories, onDelete, onEdit }) => {
   return (
-    // <TableContainer style={{ height: "100%" }} component={Paper}>
-    <TableContainer
-      style={{ height: "33rem", overflowY: "scroll" }}
-      component={Paper}
-    >
+    <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>

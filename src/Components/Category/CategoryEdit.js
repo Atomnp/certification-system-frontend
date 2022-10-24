@@ -3,16 +3,19 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
-export default function CategoryEdit(props) {
-  const { onHide, category, onEdit, setShowEditForm } = props;
-
+export default function CategoryEdit({
+  onHide,
+  category,
+  onEdit,
+  setShowEditForm,
+  ...rest
+}) {
   const [name, setTitle] = useState(category.name);
   // const [desc, setDesc] = useState(category.description);
 
-
   return (
     <>
-      <Modal {...props}>
+      <Modal {...rest} onHide={onHide}>
         <Modal.Header closeButton>
           <Modal.Title>Edit {category.name} </Modal.Title>
         </Modal.Header>
@@ -45,8 +48,6 @@ export default function CategoryEdit(props) {
                 placeholder="Description"
               />
             </Form.Group> */}
-
-          
           </Form>
         </Modal.Body>
         <Modal.Footer>
@@ -58,13 +59,12 @@ export default function CategoryEdit(props) {
             onClick={() => {
               let edited_category = {
                 name: name,
-              //  description: desc,               
+                //  description: desc,
                 location: "Kathmandu",
               };
-           
+
               onEdit(edited_category, category);
               setShowEditForm(false);
-           
             }}
           >
             Save Changes

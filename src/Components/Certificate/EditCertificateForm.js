@@ -3,16 +3,20 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
-export default function RowEdit(props) {
-  const { onHide, certificate, onEdit, setShowEditForm } = props;
-
+export default function RowEdit({
+  onHide,
+  certificate,
+  onEdit,
+  setShowEditForm,
+  ...rest
+}) {
   const [name, setName] = useState(certificate.name);
   const [email, setEmail] = useState(certificate.email);
   const [image, setImage] = useState(null);
 
   return (
     <>
-      <Modal {...props}>
+      <Modal {...rest} onHide={onHide}>
         <Modal.Header closeButton>
           <Modal.Title>Edit {certificate.name} </Modal.Title>
         </Modal.Header>

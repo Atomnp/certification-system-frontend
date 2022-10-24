@@ -55,13 +55,12 @@ export const CategoryItem = ({ event_id, onDelete, category, onEdit }) => {
           onHide={() => setShowEditForm(false)}
           category={category}
           onEdit={onEdit}
-          setShow={setShowEditForm}
+          setShowEditForm={setShowEditForm}
         />
 
         <MyModal
           show={showDeleteModal}
           onCancel={() => {
-            console.log("cancel");
             setShowDeleteModal(false);
           }}
           onConfirm={() => {

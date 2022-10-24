@@ -44,6 +44,9 @@ body {
   color:#3262b6;
 }
 
+.sidenav a{
+  padding:0.5rem;
+}
 
 .main-content{
   background-color: #e5e5e5;
@@ -51,10 +54,10 @@ body {
 }
 
 
+
 a {
   display: inline;
   font-size: 1rem;
-  padding: 0.5rem;
 }
 
 .modal {

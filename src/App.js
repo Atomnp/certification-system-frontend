@@ -18,7 +18,6 @@ function App() {
   const isLoggedIn = () => {
     let access_token = localStorage.getItem("access_token");
     if (access_token) {
-      console.log(access_token, "access_token");
       return true;
     }
   };
