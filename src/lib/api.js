@@ -72,8 +72,8 @@ axiosInstance.interceptors.response.use(
               data: originalRequest.data,
               headers: {
                 Authorization: "JWT " + response.data.access,
-                "Content-Type": "application/json",
-                accept: "application/json",
+                "Content-Type": originalRequest.headers["Content-Type"],
+                accept: originalRequest.headers["accept"],
               },
             });
           } catch (err) {
