@@ -15,12 +15,9 @@ import Logout from "./Components/logout";
 import { RouteGuard } from "./Components/RouteGuard";
 
 function App() {
-  const isLoggedIn = () => {
-    let access_token = localStorage.getItem("access_token");
-    if (access_token) {
-      return true;
-    }
-  };
+  function hasJWT() {
+    return localStorage.getItem("access_token") ? true : false;
+  }
   return (
     <APIRequestProvider>
       <Router>
@@ -45,17 +42,13 @@ function App() {
             <Route
               index
               element={
-                isLoggedIn() ? (
-                  <Navigate to="/events" />
-                ) : (
-                  <Navigate to="/login" />
-                )
+                hasJWT() ? <Navigate to="/events" /> : <Navigate to="/login" />
               }
             />
           </Route>
           <Route
             path="*"
-            element={isLoggedIn() ? <PageNotFound /> : <Navigate to="/login" />}
+            element={hasJWT() ? <PageNotFound /> : <Navigate to="/login" />}
           />
         </Routes>
 
