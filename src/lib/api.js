@@ -91,6 +91,15 @@ axiosInstance.interceptors.response.use(
         console.log("Refresh token not available.");
         window.location.href = "/login/";
       }
+    } else if (
+      error.response.data.code === "user_not_found" &&
+      error.response.status === 401 &&
+      error.response.statusText === "Unauthorized"
+    ) {
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("refresh_token");
+      axios.defaults.headers["Authorization"] = null;
+      window.location.href = "/login/";
     }
     // specific error handling done elsewhere
     return Promise.reject(error);
