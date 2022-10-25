@@ -71,7 +71,7 @@ function Category() {
   };
 
   return (
-    <>
+    <div className="event-wrapper">
       <div className="add-item-form">
         <InputField addCategory={addCategory} />
       </div>
@@ -87,7 +87,7 @@ function Category() {
           onMailSend={onMailSend}
         />
       </div>
-    </>
+    </div>
   );
 }
 

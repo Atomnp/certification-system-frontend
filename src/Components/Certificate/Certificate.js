@@ -83,7 +83,7 @@ function Certificate() {
     });
   };
   return (
-    <>
+    <div className="event-wrapper">
       <div className="add-item-form">
         <InputField bulkGenerate={bulkGenerate} />
       </div>
@@ -98,7 +98,7 @@ function Certificate() {
           onMailSend={onMailSend}
         />
       </div>
-    </>
+    </div>
   );
 }
 

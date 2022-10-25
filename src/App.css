@@ -152,18 +152,13 @@ label {
   color: rgb(34, 34, 34);
 }
 
-.add-item-form{
-  height: 20%;
-  /* overflow-y: scroll; */
-  /* overflow-x: scroll; */
-}
-
-.search-and-sort{
-  height: 7%;
-
+.event-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .list-view{
-  height: 73%;
-  overflow-y: scroll;
+  flex-grow: 1;
+  overflow-y: auto;
 }

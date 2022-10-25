@@ -68,7 +68,7 @@ function Event() {
   };
 
   return (
-    <>
+    <div className="event-wrapper">
       <div className="add-item-form">
         <InputField addEvent={addEvent} />
       </div>
@@ -83,7 +83,7 @@ function Event() {
           onMailSend={onMailSend}
         />
       </div>
-    </>
+    </div>
   );
 }
 
