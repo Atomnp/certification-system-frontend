@@ -11,12 +11,18 @@ export const InputField = (props) => {
   const [dataFile, setDatFile] = useState(null);
   const [templateImage, setTemplateFile] = useState(null);
   const [mappingFile, setMappingFile] = useState(null);
+  const [manualPositioing, setManualPositioning] = useState(false);
 
   const submit = () => {
     if (!dataFile || !templateImage || !mappingFile) {
       alert("Blank detected");
     } else {
-      props.bulkGenerate(dataFile, templateImage, mappingFile);
+      props.bulkGenerate(
+        dataFile,
+        templateImage,
+        mappingFile,
+        manualPositioing
+      );
     }
   };
 
@@ -60,6 +66,19 @@ export const InputField = (props) => {
           </Col>
         </Row>
         <Row>
+          <Col>
+            <div id="checkbox">
+              <Form.Check
+                inline
+                label="Use manual position in mapping file"
+                onChange={(e) => {
+                  setManualPositioning(!manualPositioing);
+                }}
+                type={"checkbox"}
+              />
+              {/* <span></span> */}
+            </div>
+          </Col>
           <Col>
             <div className="btn">
               <Button variant="primary" type="button" onClick={submit}>

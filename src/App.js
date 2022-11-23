@@ -22,7 +22,10 @@ function App() {
     <APIRequestProvider>
       <Router>
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/login"
+            element={hasJWT() ? <Navigate to="/events" /> : <Login />}
+          />
           <Route path="/logout" element={<Logout />} />
 
           <Route

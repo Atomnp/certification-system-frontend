@@ -54,7 +54,12 @@ function Certificate() {
     }, "Certificate edited successfully");
   };
 
-  const bulkGenerate = async (data_file, template_image, mapping_file) => {
+  const bulkGenerate = async (
+    data_file,
+    template_image,
+    mapping_file,
+    manualPositioing = false
+  ) => {
     request_handler(async () => {
       setLoaderMessage("Generating Certificates");
       let formData = new FormData();
@@ -63,6 +68,10 @@ function Certificate() {
       formData.append("mapping", mapping_file);
       formData.append("event", event_id);
       formData.append("category", category_id);
+      formData.append(
+        "positioning_method",
+        manualPositioing ? "manual" : "auto_detect"
+      );
       let res = await axios({
         method: "post",
         url: "generate-bulk-certificate/",

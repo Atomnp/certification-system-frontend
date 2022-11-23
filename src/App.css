@@ -12,7 +12,7 @@ body {
   background-color: #e5e5e5;
 }
 #labels {
-  padding: 1rem;
+  padding: 0.5rem;
   font-weight: 600;
   font-size: 1.2rem;
 }
@@ -96,7 +96,7 @@ a {
 
 .center{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .clickable-blue {
@@ -161,4 +161,8 @@ label {
 .list-view{
   flex-grow: 1;
   overflow-y: auto;
+}
+
+#checkbox{
+padding: 1rem;
 }
