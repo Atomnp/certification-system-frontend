@@ -22,8 +22,7 @@ export default function (props) {
       localStorage.setItem("refresh_token", res.data.refresh);
       axios.defaults.headers["Authorization"] =
         "JWT " + localStorage.getItem("access_token");
-      //   history.push("/");
-      navigate("/events");
+        window.location.href = "/events";
     });
   };
 
