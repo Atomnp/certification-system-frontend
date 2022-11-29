@@ -45,7 +45,7 @@ export const APIRequestProvider = (props) => {
       setLoading(false);
       if (success_message) {
         showToastSuccess(success_message);
-      } else if (res.data.message) {
+      } else if (res?.data?.message) {
         showToastSuccess(res.data.message);
       }
     } catch (err) {
@@ -54,10 +54,10 @@ export const APIRequestProvider = (props) => {
       setLoading(false);
       if (failure_message) {
         showToastError(failure_message);
-      } else if (err.response && err.response.data) {
+      } else if (err?.response?.data) {
         showToastError(err.response.data);
       } else {
-        showToastError(err.code);
+        showToastError(err?.code);
       }
     }
   };
