@@ -1,5 +1,6 @@
 import React from "react";
 import Popup from "reactjs-popup";
+import Moment from "moment";
 import "reactjs-popup/dist/index.css";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
@@ -40,7 +41,7 @@ export const CertificateItem = ({
         <h6>{certificate.email}</h6>
       </TableCell>
       <TableCell align="left">
-        <h6
+        {/* <h6
           onClick={() => {
             navigator.clipboard.writeText(certificate.image);
           }}
@@ -48,7 +49,8 @@ export const CertificateItem = ({
           <div className="clickable-blue">
             <FontAwesomeIcon icon={faCopy} />
           </div>
-        </h6>
+        </h6> */}
+        <h6>{Moment(certificate.created_at).format('d MMM YY, hh:mm A')}</h6>
       </TableCell>
       <TableCell align="left">
         {certificate.email_sent ? (
