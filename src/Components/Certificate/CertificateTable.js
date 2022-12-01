@@ -33,7 +33,7 @@ export const CertificateTable = ({
               <h5>Email</h5>
             </TableCell>
             <TableCell align="left">
-              <h5>Created On</h5>
+              <h5>Created at</h5>
             </TableCell>
             <TableCell align="left">
               <h5>Emailed</h5>
