@@ -70,6 +70,23 @@ function Category() {
     });
   };
 
+  const onRegenerate = (category_id, template, mapping) => {
+    request_handler(async () => {
+      let formData = new FormData();
+      formData.append("template_image", template);
+      formData.append("mapping", mapping);
+      formData.append("category", category_id);
+      formData.append("positioning_method", "manual");
+      let res = await axios({
+        method: "post",
+        url: `regenerate-bulk-certificate/`,
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      return res;
+    });
+  };
+
   return (
     <div className="event-wrapper">
       <div className="add-item-form">
@@ -85,6 +102,7 @@ function Category() {
           onDelete={onDelete}
           onEdit={onEdit}
           onMailSend={onMailSend}
+          onRegenerate={onRegenerate}
         />
       </div>
     </div>

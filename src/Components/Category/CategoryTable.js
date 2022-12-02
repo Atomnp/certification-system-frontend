@@ -16,6 +16,7 @@ export const CategoryTable = ({
   onDelete,
   onEdit,
   onMailSend,
+  onRegenerate,
 }) => {
   return (
     <TableContainer component={Paper}>
@@ -46,6 +47,7 @@ export const CategoryTable = ({
                 onDelete={onDelete}
                 onEdit={onEdit}
                 onMailSend={onMailSend}
+                onRegenerate={onRegenerate}
               />
             );
           })}

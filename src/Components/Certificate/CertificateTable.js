@@ -45,7 +45,6 @@ export const CertificateTable = ({
         </TableHead>
         <TableBody>
           {certificates.map((certificate) => {
-            console.log(certificate);
             let s = certificate.image.split("/");
             certificate.certificate_url =
               process.env.REACT_APP_LOCUS_SITE_URL + certificate.id;

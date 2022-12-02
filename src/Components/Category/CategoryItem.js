@@ -7,16 +7,19 @@ import MyEdit from "./CategoryEdit";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import MailSendPopup from "../MailSendPopup";
+import Regenerate from "./RegenerateCategoryCertificate";
 export const CategoryItem = ({
   event_id,
   onDelete,
   category,
   onEdit,
   onMailSend,
+  onRegenerate,
 }) => {
   const [showDeleteModal, setShowDeleteModal] = React.useState(false);
   const [showEditForm, setShowEditForm] = React.useState(false);
   const [showMailSend, setShowMailSend] = React.useState(false);
+  const [showRegenerate, setShowRegenerate] = React.useState(false);
   return (
     <TableRow
       key={category.name}
@@ -40,6 +43,15 @@ export const CategoryItem = ({
 
       <TableCell>
         <div className="center">
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={() => {
+              setShowRegenerate(true);
+            }}
+          >
+            Regenerate
+          </Button>
           <Button
             variant="primary"
             size="sm"
@@ -98,6 +110,13 @@ export const CategoryItem = ({
             onMailSend(category.id, false);
             setShowMailSend(false);
           }}
+        />
+        <Regenerate
+          show={showRegenerate}
+          onHide={() => setShowRegenerate(false)}
+          category={category}
+          onRegenerate={onRegenerate}
+          setShowRegenerate={setShowRegenerate}
         />
       </TableCell>
     </TableRow>

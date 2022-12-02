@@ -50,7 +50,7 @@ export const CertificateItem = ({
             <FontAwesomeIcon icon={faCopy} />
           </div>
         </h6> */}
-        <h6>{Moment(certificate.created_at).format('d MMM YY, hh:mm A')}</h6>
+        <h6>{Moment(certificate.created_at).format("d MMM YY, hh:mm A")}</h6>
       </TableCell>
       <TableCell align="left">
         {certificate.email_sent ? (
